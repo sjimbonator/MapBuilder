@@ -1,9 +1,16 @@
-﻿<!-- nav -->
-<nav class="nav-wrapper teal lighten-1 white-text" *ngIf="currentUser">
-    <div>
-        <a (click)="logout()">Logout</a>
+﻿<nav>
+    <div class="nav-wrapper teal lighten-1 white-text">
+      <a href="#" class="brand-logo">Logo</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li *ngIf="currentUser; else elseblock"> <a (click)="logout()">Logout</a></li>
+        <ng-template #elseblock>
+            <li><a routerLink="/login">login</a></li>
+            <li><a routerLink="/register">register</a></li>
+        </ng-template>
+      </ul>
     </div>
-</nav>
+  </nav>
+        
 
 <!-- main app container -->
 <div class="jumbotron">

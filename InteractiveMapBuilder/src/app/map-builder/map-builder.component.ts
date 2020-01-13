@@ -12,8 +12,7 @@ export class MapBuilderComponent implements OnInit {
 
   maps: Observable<Map[]>;
   mapName = '';
-  state = false;
-  arrayMapNames = [];
+  buttonState = false;
 
   constructor(private listService: MapListService) { }
 
@@ -26,7 +25,6 @@ export class MapBuilderComponent implements OnInit {
     let map = new Map();
     map.Name = mapName;
     this.listService.postMap(map).subscribe(() => this.maps = this.listService.getMaps());
-    this.arrayMapNames.push(mapName);
     
   }
   removeMap(Id : string): void
@@ -37,8 +35,8 @@ export class MapBuilderComponent implements OnInit {
   
   checkInput(){
     if (this.mapName === ''){
-      this.state = true;
-      return this.state;
+      this.buttonState = true;
+      return this.buttonState;
     }
   }
 

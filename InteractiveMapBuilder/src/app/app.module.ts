@@ -103,7 +103,6 @@ const appRoutes = [
     MatSortModule,
     MatPaginatorModule,
     ReactiveFormsModule
-    
   ],
   providers: [],
   bootstrap: [AppComponent]

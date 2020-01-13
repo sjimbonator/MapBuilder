@@ -15,6 +15,14 @@ export class MapBuilderComponent implements OnInit {
   {
     this.listService.getMapList().subscribe(mapList => this.mapList = mapList)
   }
+  addMap(mapName : string): void
+  {
+    this.listService.addMap(mapName);
+  }
+  removeMap(mapName : string): void
+  {
+    this.listService.removeMap(mapName);
+  }
   ngOnInit() {
     this.getList();
   }

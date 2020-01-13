@@ -21,7 +21,7 @@ export class MapListService {
   {
     for(let i : any = 0; i < this.listItems.length; i++)
     {
-      if(this.listItems[i] == map){this.listItems.splice(i);}
+      if(this.listItems[i] == map){this.listItems.splice(i, 1);}
     }
   }
 }

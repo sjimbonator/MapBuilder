@@ -1,0 +1,31 @@
+<div>
+    <mat-toolbar color = "primary" class="mat-elevation-z4">
+    <span>My Maps</span>
+    </mat-toolbar>  
+
+    <mat-nav-list>
+        <mat-row>
+            <mat-col>
+                <mat-form-field appearance="outline">
+                    <input matInput placeholder="Map Name">
+                </mat-form-field>
+            </mat-col>
+            <mat-col>
+                <mat-icon>add_circle</mat-icon>
+            </mat-col>
+        </mat-row>
+        
+
+        <mat-divider></mat-divider>
+
+        <mat-list-item *ngFor="let map of mapList; let i = index;">
+            <mat-divider></mat-divider>
+            <a matLine href="...">{{ mapList[i] }}</a>
+            <button mat-icon-button >
+            <mat-icon>remove_circle_outline</mat-icon>
+            </button>
+        </mat-list-item>
+    </mat-nav-list>
+
+    
+</div>

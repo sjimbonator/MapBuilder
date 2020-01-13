@@ -10,9 +10,13 @@ import { Observable } from 'rxjs';
 })
 export class MapBuilderComponent implements OnInit {
 
+  maps: Observable<Map[]>;
+  mapName = '';
+  state = false;
+  arrayMapNames = [];
+
   constructor(private listService: MapListService) { }
 
-  maps: Observable<Map[]>;
   getList(): void
   {
     this.maps = this.listService.getMaps();
@@ -22,6 +26,7 @@ export class MapBuilderComponent implements OnInit {
     let map = new Map();
     map.Name = mapName;
     this.listService.postMap(map).subscribe(() => this.maps = this.listService.getMaps());
+    this.arrayMapNames.push(mapName);
     
   }
   removeMap(Id : string): void
@@ -29,9 +34,21 @@ export class MapBuilderComponent implements OnInit {
     if (confirm("Are you sure you want to delete this ?")) { this.listService.deleteMap(Id).subscribe(() => this.maps = this.listService.getMaps()) }
     
   }
+  
+  checkInput(){
+    if (this.mapName === ''){
+      this.state = true;
+      return this.state;
+    }
+  }
+
+  resetInput(){
+    this.mapName = '';
+  }
+
   ngOnInit() {
     console.log("hoi");
     this.getList();
+    
   }
-
 }

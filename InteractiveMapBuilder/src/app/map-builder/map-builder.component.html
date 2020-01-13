@@ -15,12 +15,12 @@
 
         <mat-divider></mat-divider>
 
-        <mat-list-item *ngFor="let map of mapList; let i = index;">
+        <mat-list-item *ngFor="let map of maps | async">
             <mat-divider></mat-divider>
             
-            <a matLine href="...">{{ mapList[i] }}</a>
+            <a matLine href="...">{{map.Name}}</a>
             <button mat-icon-button >
-                <a mat-icon-button (click)="removeMap(mapList[i])"><mat-icon  color = "secondary">remove_circle_outline</mat-icon></a>
+                <a mat-icon-button (click)="removeMap(map.Id)"><mat-icon  color = "secondary">remove_circle_outline</mat-icon></a>
             </button>
         </mat-list-item>
     </mat-nav-list>

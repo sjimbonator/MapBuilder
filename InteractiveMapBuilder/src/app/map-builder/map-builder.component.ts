@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MapListService } from '../map-list.service'
+import { MapListService } from '../services/map-list.service'
+import {Map} from '../models/map'
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-map-builder',
@@ -10,20 +12,25 @@ export class MapBuilderComponent implements OnInit {
 
   constructor(private listService: MapListService) { }
 
-  private mapList: string[];
+  maps: Observable<Map[]>;
   getList(): void
   {
-    this.listService.getMapList().subscribe(mapList => this.mapList = mapList)
+    this.maps = this.listService.getMaps();
   }
   addMap(mapName : string): void
   {
-    this.listService.addMap(mapName);
+    let map = new Map();
+    map.Name = mapName;
+    this.listService.postMap(map).subscribe(() => this.maps = this.listService.getMaps());
+    
   }
-  removeMap(mapName : string): void
+  removeMap(Id : string): void
   {
-    this.listService.removeMap(mapName);
+    if (confirm("Are you sure you want to delete this ?")) { this.listService.deleteMap(Id).subscribe(() => this.maps = this.listService.getMaps()) }
+    
   }
   ngOnInit() {
+    console.log("hoi");
     this.getList();
   }
 

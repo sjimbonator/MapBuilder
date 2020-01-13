@@ -13,6 +13,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 
 import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+
 
 //Angular Material Components
 import 
@@ -60,18 +62,10 @@ const appRoutes = [
   {path: 'login', component : LoginComponent}
 ]
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavComponent,
-    DashboardComponent,
-    LoginComponent,
-    RegisterComponent,
-    MapViewerComponent,
-    MapBuilderComponent
-  ],
   imports: [
     RouterModule.forRoot(appRoutes),
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     LayoutModule,
@@ -110,6 +104,16 @@ const appRoutes = [
     ReactiveFormsModule,
     FormsModule
   ],
+  declarations: [
+    AppComponent,
+    NavComponent,
+    DashboardComponent,
+    LoginComponent,
+    RegisterComponent,
+    MapViewerComponent,
+    MapBuilderComponent
+  ],
+  
   providers: [],
   bootstrap: [AppComponent]
 })

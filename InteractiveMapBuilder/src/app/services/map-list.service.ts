@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Map } from '../models/map';
+import  * as globals from '../globals';
 
 const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) }; 
 
@@ -9,7 +10,7 @@ const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/js
   providedIn: 'root'
 })
 export class MapListService {
-  url: string = "https://localhost:44383/api/Maps"
+  url: string = globals.url + "/api/Maps";
   
   constructor(private http: HttpClient) { }
 

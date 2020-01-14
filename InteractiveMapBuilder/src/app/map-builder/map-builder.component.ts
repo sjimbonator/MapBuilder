@@ -45,7 +45,6 @@ export class MapBuilderComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("hoi");
     this.getList();
     
   }

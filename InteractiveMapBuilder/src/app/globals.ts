@@ -1,0 +1,1 @@
+export let url: string = "https://localhost:44386"

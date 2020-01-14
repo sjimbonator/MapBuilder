@@ -5,7 +5,6 @@ using System.Net.Http;
 using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
-using System.Web.Http.Cors;
 
 namespace Identity
 {
@@ -28,8 +27,8 @@ namespace Identity
             );
 
             // Enable CORS for the Angular App
-            var cors = new EnableCorsAttribute("http://localhost:44386", "*", "*");
-            config.EnableCors(cors);
+            // var cors = new EnableCorsAttribute("http://localhost:44386", "*", "*");
+            // config.EnableCors(cors);
 
             // Set JSON formatter as default one and remove XmlFormatter
 

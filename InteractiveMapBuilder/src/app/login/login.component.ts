@@ -22,13 +22,14 @@ export class LoginComponent {
     let account : AccountModel  = new AccountModel;
     
     account = this.loginForm.value;
-    this.as.getToken(account).subscribe(x => this.setAccessToken(x),
+    this.as.getToken(account).subscribe(x => this.authenticate(x),
     err => {this.error = true; this.loginForm.reset();},
     () => console.log('Observer got a complete notification'));
   }
 
-  setAccessToken(x : any)
+  authenticate(x : any)
   {
-    globals.setToken("test");
+    globals.setToken(x.access_token);
+    //console.log(x.access_token);
   }
 }

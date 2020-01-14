@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MapListService } from '../services/map-list.service'
 import {Map} from '../models/map'
 import { Observable } from 'rxjs';
+import  * as globals from '../globals';
 
 @Component({
   selector: 'app-map-builder',
@@ -43,6 +44,8 @@ export class MapBuilderComponent implements OnInit {
   resetInput(){
     this.mapName = '';
   }
+
+  checkAuthenticated() {return globals.isAuthenticated;}
 
   ngOnInit() {
     this.getList();

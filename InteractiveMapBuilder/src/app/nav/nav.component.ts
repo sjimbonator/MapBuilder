@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import  * as globals from '../globals';
 
 @Component({
   selector: 'app-nav',
@@ -16,7 +17,10 @@ export class NavComponent {
       shareReplay()
     );
 
-    test(){console.log("working!");}
+  checkAuthenticated() {return globals.isAuthenticated;}
+
+  logout() {alert("function still WIP");}
+
 
   constructor(private breakpointObserver: BreakpointObserver) {}
 

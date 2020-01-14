@@ -4,8 +4,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Map } from '../models/map';
 import  * as globals from '../globals';
 
-const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) }; 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -19,9 +17,9 @@ export class MapListService {
   //Gets a specific map based on Id
   getMap(Id: string): Observable<Map> {return this.http.get<Map>(this.url+"/"+Id);}
   //Replaces a Map with a new Map object
-  putMap(map: Map): Observable<Map> {return this.http.put<Map>(this.url+"/"+map.Id, map, httpOptions)}
+  putMap(map: Map): Observable<Map> {return this.http.put<Map>(this.url+"/"+map.Id, map, globals.httpOptions)}
   //Uploads a new Map
-  postMap(map: Map): Observable<Map> {return this.http.post<Map>(this.url, map, httpOptions)}
+  postMap(map: Map): Observable<Map> {return this.http.post<Map>(this.url, map, globals.httpOptions)}
   //Uploads a new Map
-  deleteMap(Id: string): Observable<Map> {return this.http.delete<Map>(this.url+"/"+Id, httpOptions)}
+  deleteMap(Id: string): Observable<Map> {return this.http.delete<Map>(this.url+"/"+Id, globals.httpOptions)}
 }

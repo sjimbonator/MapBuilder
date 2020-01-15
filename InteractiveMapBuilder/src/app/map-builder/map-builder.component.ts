@@ -25,7 +25,7 @@ export class MapBuilderComponent implements OnInit {
   {
     console.log(mapName);
     let map = new Map();
-    map.Name = mapName;
+    map.name = mapName;
     this.listService.postMap(map).subscribe(() => this.maps = this.listService.getMaps());
     
   }

@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { AccountService } from '../services/account.service';
 import { AccountModel } from '../models/account';
 import  * as globals from '../globals';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginComponent {
 
   });
 
-  constructor(private fb: FormBuilder, private as: AccountService) {}
+  constructor(private fb: FormBuilder, private as: AccountService, private router:Router) {}
   error : boolean = false;
   onSubmit() {
     let account : AccountModel  = new AccountModel;
@@ -24,7 +25,7 @@ export class LoginComponent {
     account = this.loginForm.value;
     this.as.getToken(account).subscribe(x => this.authenticate(x),
     err => {this.error = true; this.loginForm.reset();},
-    () => console.log('Observer got a complete notification'));
+    () => this.router.navigate(['map-builder']));
   }
 
   authenticate(x : any)

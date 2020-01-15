@@ -19,7 +19,7 @@ export class NavComponent {
 
   checkAuthenticated() {return globals.isAuthenticated;}
 
-  logout() {alert("function still WIP");}
+  logout() {globals.removeToken();}
 
 
   constructor(private breakpointObserver: BreakpointObserver) {}

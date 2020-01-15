@@ -1,6 +1,9 @@
 <mat-toolbar color = "primary" class="mat-elevation-z4">
     <span>Registration</span>
  </mat-toolbar>
+ <mat-toolbar color = "accent" *ngIf="registrationSucces">
+   <span>{{attemptText}}</span>
+</mat-toolbar>
  <mat-card class="my-card">
    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <mat-card-content>

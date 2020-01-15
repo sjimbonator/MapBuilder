@@ -11,6 +11,8 @@ import { ErrorStateMatcher } from '@angular/material/core';
 export class RegisterComponent {
   myForm: FormGroup;
   matcher = new MyErrorStateMatcher();
+  registrationAttempt : boolean = false;
+  attemptText : string = '';
 
   account_validation_messages = {
     'Email': [
@@ -53,12 +55,13 @@ export class RegisterComponent {
   constructor(private fb: FormBuilder, private accService: AccountService) {}
 
   onSubmit() {
+    this.registrationAttempt = true;
     console.warn(this.registerForm.value);
     let account : AccountModel  = new AccountModel;
     account = this.registerForm.value;
     this.accService.register(account).subscribe(x => console.log('Observer got a next value: ' + x),
-    err => console.error('Observer got an error: ' + err),
-    () => console.log('Observer got a complete notification'));
+    err => {this.attemptText = 'Registration failed.';},
+    () => {this.attemptText = 'Registration successful!';})
     this.clearInput()
   }
 

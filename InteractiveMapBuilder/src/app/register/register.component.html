@@ -7,14 +7,21 @@
             <mat-form-field class="full-width">
                <mat-label>Email</mat-label>
                <input  matInput  placeholder="Email" formControlName ="Email" required>
+               <mat-error *ngFor="let validation of account_validation_messages.Email">
+                  <mat-error class="error-message" *ngIf="registerForm.get('Email').hasError(validation.type) && (registerForm.get('Email').dirty || registerForm.get('Email').touched)">{{validation.message}}</mat-error>
+                </mat-error>
             </mat-form-field>
             <mat-form-field class="full-width">
                <mat-label>Password</mat-label>
                <input type= "password"  matInput  placeholder="Password" formControlName="Password" required>
+               <mat-error *ngFor="let validation of account_validation_messages.Password">
+                  <mat-error class="error-message" *ngIf="registerForm.get('Password').hasError(validation.type) && (registerForm.get('Password').dirty || registerForm.get('Password').touched)">{{validation.message}}</mat-error>
+                </mat-error>
             </mat-form-field>
             <mat-form-field class="full-width">
                <mat-label>Confirm Password</mat-label>
-               <input type= "password"  matInput  placeholder="Password" formControlName="ConfirmPassword" required>
+               <input type= "password"  matInput  placeholder="Password" formControlName="ConfirmPassword" required [errorStateMatcher]="matcher">
+               <mat-error *ngIf="registerForm.hasError('notSame')">Passwords do not match</mat-error>
             </mat-form-field>
     </mat-card-content>
     <mat-card-actions>

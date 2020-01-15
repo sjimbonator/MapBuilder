@@ -23,7 +23,7 @@ export class RegisterComponent {
     'Password': [
       { type: 'required', message: 'Password is required' },
       { type: 'minlength', message: 'Password must be at least 6 characters long' },
-      { type: 'pattern', message: 'Your password must contain at least one uppercase, one lowercase, and one number' }
+      { type: 'pattern', message: 'Your password must contain at least one uppercase, one lowercase, one number and one special character' }
     ]
   }
 

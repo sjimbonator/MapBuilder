@@ -31,7 +31,7 @@ export class LoginComponent {
     Password:  new FormControl('', Validators.compose([
       Validators.minLength(6),
 	 	  Validators.required,
-      Validators.pattern('^(?=.*[!@#$%^&*(),.?":{}|<>])(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$') //one lowercase, one uppercase, and one number minimally
+       Validators.pattern('^(?=.{5,})(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).*$') //one lowercase, one uppercase, and one number minimally
     ]))
 
   });

@@ -53,11 +53,13 @@ import
 import { RegisterComponent } from './register/register.component';
 import { MapViewerComponent } from './map-viewer/map-viewer.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MapBuilderComponent } from './map-builder/map-builder.component';
+import { MapBuilderComponent } from './map-builder-components/maps-list/map-builder.component';
+import { MapBuilderShellComponent } from './map-builder-components/map-builder-shell/map-builder-shell.component';
 
 const appRoutes = [
   {path: 'map-viewer', component : MapViewerComponent},
   {path: 'map-builder', component : MapBuilderComponent},
+  {path: 'map-builder-shell', component : MapBuilderShellComponent},
   {path: 'register', component : RegisterComponent},
   {path: 'login', component : LoginComponent}
 ]
@@ -111,7 +113,8 @@ const appRoutes = [
     LoginComponent,
     RegisterComponent,
     MapViewerComponent,
-    MapBuilderComponent
+    MapBuilderComponent,
+    MapBuilderShellComponent
   ],
   
   providers: [],

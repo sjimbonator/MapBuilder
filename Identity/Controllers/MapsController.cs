@@ -23,7 +23,7 @@ namespace Identity.Controllers
         // GET: api/Maps
         public IQueryable<Map> GetMaps()
         {
-            int userid = Convert.ToInt32(User.Identity.GetUserId());
+            string userid = RequestContext.Principal.Identity.GetUserId();
             return db.Maps.Where(map => map.UserId == userid);
         }
 
@@ -31,7 +31,7 @@ namespace Identity.Controllers
         [ResponseType(typeof(Map))]
         public async Task<IHttpActionResult> GetMap(int id)
         {
-            int userid = Convert.ToInt32(User.Identity.GetUserId());
+            string userid = RequestContext.Principal.Identity.GetUserId();
             Map map = await db.Maps.FindAsync(id);
             if (map == null)
             {
@@ -59,7 +59,7 @@ namespace Identity.Controllers
                 return BadRequest();
             }
 
-            int userid = Convert.ToInt32(User.Identity.GetUserId());
+            string userid = RequestContext.Principal.Identity.GetUserId();
 
             if (map.UserId != userid)
             {
@@ -96,7 +96,7 @@ namespace Identity.Controllers
                 return BadRequest(ModelState);
             }
 
-            int userid = Convert.ToInt32(User.Identity.GetUserId());
+            string userid = RequestContext.Principal.Identity.GetUserId();
             map.UserId = userid;
 
             db.Maps.Add(map);
@@ -115,7 +115,7 @@ namespace Identity.Controllers
                 return NotFound();
             }
 
-            int userid = Convert.ToInt32(User.Identity.GetUserId());
+            string userid = RequestContext.Principal.Identity.GetUserId();
 
             if (map.UserId != userid)
             {

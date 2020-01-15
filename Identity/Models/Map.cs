@@ -13,7 +13,7 @@ namespace Identity.Models
         public string Name { get; set; }
 
         // Foreign Key
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         // Navigation property
         // public User User { get; set; }
     }

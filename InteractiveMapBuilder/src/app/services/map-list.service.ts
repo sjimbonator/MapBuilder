@@ -13,13 +13,13 @@ export class MapListService {
   constructor(private http: HttpClient) { }
 
   //Gets all maps
-  getMaps(): Observable<Map[]> {return this.http.get<Map[]>(this.url);}
+  getMaps(): Observable<Map[]> {return this.http.get<Map[]>(this.url, globals.httpOptions);}
   //Gets a specific map based on Id
-  getMap(Id: string): Observable<Map> {return this.http.get<Map>(this.url+"/"+Id);}
+  getMap(Id: string): Observable<Map> {return this.http.get<Map>(this.url+"/"+Id, globals.httpOptions);}
   //Replaces a Map with a new Map object
   putMap(map: Map): Observable<Map> {return this.http.put<Map>(this.url+"/"+map.Id, map, globals.httpOptions)}
   //Uploads a new Map
   postMap(map: Map): Observable<Map> {return this.http.post<Map>(this.url, map, globals.httpOptions)}
-  //Uploads a new Map
+  //Deletes a Map
   deleteMap(Id: string): Observable<Map> {return this.http.delete<Map>(this.url+"/"+Id, globals.httpOptions)}
 }

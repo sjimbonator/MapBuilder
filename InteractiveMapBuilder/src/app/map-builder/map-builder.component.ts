@@ -23,6 +23,7 @@ export class MapBuilderComponent implements OnInit {
   }
   addMap(mapName : string): void
   {
+    console.log(mapName);
     let map = new Map();
     map.Name = mapName;
     this.listService.postMap(map).subscribe(() => this.maps = this.listService.getMaps());

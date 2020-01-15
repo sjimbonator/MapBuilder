@@ -257,9 +257,6 @@ D:\git\git\MapBuilder\Identity\bin\Microsoft.Owin.Security.OAuth.xml
 D:\git\git\MapBuilder\Identity\bin\System.Web.Http.Owin.xml
 D:\git\git\MapBuilder\Identity\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\git\git\MapBuilder\Identity\obj\Debug\Identity.csprojAssemblyReference.cache
-D:\git\git\MapBuilder\Identity\obj\Debug\Identity.Migrations.Initial.resources
-D:\git\git\MapBuilder\Identity\obj\Debug\Identity.csproj.GenerateResource.cache
-D:\git\git\MapBuilder\Identity\obj\Debug\Identity.csproj.CoreCompileInputs.cache
 D:\git\git\MapBuilder\Identity\obj\Debug\Identity.csproj.CopyComplete
 D:\git\git\MapBuilder\Identity\obj\Debug\Identity.dll
 D:\git\git\MapBuilder\Identity\obj\Debug\Identity.pdb
@@ -399,3 +396,5 @@ C:\Users\Sjimmie\Documents\GitHub\MapBuilder\Identity\obj\Debug\Identity.csproj.
 C:\Users\Sjimmie\Documents\GitHub\MapBuilder\Identity\obj\Debug\Identity.csproj.CopyComplete
 C:\Users\Sjimmie\Documents\GitHub\MapBuilder\Identity\obj\Debug\Identity.dll
 C:\Users\Sjimmie\Documents\GitHub\MapBuilder\Identity\obj\Debug\Identity.pdb
+D:\git\git\MapBuilder\Identity\obj\Debug\Identity.Migrations.Initial.resources
+D:\git\git\MapBuilder\Identity\obj\Debug\Identity.csproj.GenerateResource.cache

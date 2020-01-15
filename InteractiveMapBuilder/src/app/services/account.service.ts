@@ -23,4 +23,5 @@ export class AccountService {
     body.set("Password", user.Password)
     return body;
   }
+  getInfo(): Observable<AccountModel> {return this.http.get<AccountModel>(this.url + "/UserInfo", globals.httpOptions);}
 }

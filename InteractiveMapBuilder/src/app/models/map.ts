@@ -1,6 +1,6 @@
 export class Map{
-    Id : number;
-    Name : string;
-    UserId : string;
+    id : number;
+    name : string;
+    userId : string;
   }
   

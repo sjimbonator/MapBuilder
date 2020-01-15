@@ -25,6 +25,7 @@ namespace Identity.Controllers
         {
             string userid = RequestContext.Principal.Identity.GetUserId();
             return db.Maps.Where(map => map.UserId == userid);
+            //return db.Maps;
         }
 
         // GET: api/Maps/5

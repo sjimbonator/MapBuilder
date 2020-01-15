@@ -15,12 +15,13 @@ using Microsoft.AspNet.Identity;
 
 namespace Identity.Controllers
 {
-    [Authorize]
+    
     public class MapsController : ApiController
     {
         private IdentityContext db = new IdentityContext();
 
         // GET: api/Maps
+        [Authorize]
         public IQueryable<Map> GetMaps()
         {
             string userid = RequestContext.Principal.Identity.GetUserId();
@@ -32,21 +33,22 @@ namespace Identity.Controllers
         [ResponseType(typeof(Map))]
         public async Task<IHttpActionResult> GetMap(int id)
         {
-            string userid = RequestContext.Principal.Identity.GetUserId();
+            //string userid = RequestContext.Principal.Identity.GetUserId();
             Map map = await db.Maps.FindAsync(id);
             if (map == null)
             {
                 return NotFound();
             }
-            if (map.UserId != userid)
-            {
-                return Unauthorized();
-            }
+            //if (map.UserId != userid)
+            //{
+            //    return Unauthorized();
+            //}
 
             return Ok(map);
         }
 
         // PUT: api/Maps/5
+        [Authorize]
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutMap(int id, Map map)
         {
@@ -89,6 +91,7 @@ namespace Identity.Controllers
         }
 
         // POST: api/Maps
+        [Authorize]
         [ResponseType(typeof(Map))]
         public async Task<IHttpActionResult> PostMap(Map map)
         {
@@ -107,6 +110,7 @@ namespace Identity.Controllers
         }
 
         // DELETE: api/Maps/5
+        [Authorize]
         [ResponseType(typeof(Map))]
         public async Task<IHttpActionResult> DeleteMap(int id)
         {

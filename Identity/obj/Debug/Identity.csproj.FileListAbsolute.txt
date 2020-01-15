@@ -391,10 +391,10 @@ C:\Users\Sjimmie\Documents\GitHub\MapBuilder\Identity\bin\Microsoft.Owin.Securit
 C:\Users\Sjimmie\Documents\GitHub\MapBuilder\Identity\bin\System.Web.Http.Owin.xml
 C:\Users\Sjimmie\Documents\GitHub\MapBuilder\Identity\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\Sjimmie\Documents\GitHub\MapBuilder\Identity\obj\Debug\Identity.csprojAssemblyReference.cache
-C:\Users\Sjimmie\Documents\GitHub\MapBuilder\Identity\obj\Debug\Identity.Migrations.Initial.resources
-C:\Users\Sjimmie\Documents\GitHub\MapBuilder\Identity\obj\Debug\Identity.csproj.GenerateResource.cache
 C:\Users\Sjimmie\Documents\GitHub\MapBuilder\Identity\obj\Debug\Identity.csproj.CopyComplete
 C:\Users\Sjimmie\Documents\GitHub\MapBuilder\Identity\obj\Debug\Identity.dll
 C:\Users\Sjimmie\Documents\GitHub\MapBuilder\Identity\obj\Debug\Identity.pdb
 D:\git\git\MapBuilder\Identity\obj\Debug\Identity.Migrations.Initial.resources
 D:\git\git\MapBuilder\Identity\obj\Debug\Identity.csproj.GenerateResource.cache
+C:\Users\Sjimmie\Documents\GitHub\MapBuilder\Identity\obj\Debug\Identity.Migrations.Initial.resources
+C:\Users\Sjimmie\Documents\GitHub\MapBuilder\Identity\obj\Debug\Identity.csproj.GenerateResource.cache

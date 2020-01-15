@@ -20,5 +20,7 @@ namespace Identity.Data
         }
 
         public System.Data.Entity.DbSet<Identity.Models.Map> Maps { get; set; }
+
+        public System.Data.Entity.DbSet<Identity.Models.Layer> Layers { get; set; }
     }
 }

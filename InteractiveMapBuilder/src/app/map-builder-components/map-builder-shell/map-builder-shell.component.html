@@ -1,1 +1,27 @@
-<p>map-builder-shell works!</p>
+<mat-toolbar color = "primary" class="mat-elevation-z4">
+    <button mat-button routerLink= "/map-builder"><mat-icon>arrow_back</mat-icon>My Maps</button>
+</mat-toolbar>
+    
+<div class="basic-container">
+    <mat-grid-list cols="6" rowHeight="2 : 5" gutterSize = "16px">
+    
+        <mat-grid-tile [colspan]="4">
+            <div class="componentcontainer">
+                <app-layers-list></app-layers-list>
+            </div>
+        </mat-grid-tile>
+        
+        <mat-grid-tile [colspan]="1">
+            <div class="componentcontainer">
+                <app-layers-list></app-layers-list>
+            </div>
+        </mat-grid-tile>
+        
+        <mat-grid-tile [colspan]="1">
+            <div class="componentcontainer">
+                <app-layers-list></app-layers-list>
+            </div>
+        </mat-grid-tile>
+        
+      </mat-grid-list>
+</div>

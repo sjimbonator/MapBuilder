@@ -1,0 +1,14 @@
+.basic-container {
+    padding: 2%;
+  }
+
+.componentcontainer {
+    width: calc(100% - 2px);
+    height: calc(100% - 2px);
+    background: inherit;
+
+    border-style: solid;
+    border-color: primary;
+    border-width: 1px;
+  }
+  

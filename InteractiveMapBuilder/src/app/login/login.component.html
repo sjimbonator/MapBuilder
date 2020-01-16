@@ -1,29 +1,31 @@
-<mat-toolbar color = "primary" class="mat-elevation-z6">
-  <span>Login</span>
-</mat-toolbar>
-<mat-toolbar color = "warn" *ngIf="error">
-   <span>Login failed</span>
- </mat-toolbar>
-<mat-card class="my-card">
-   <form [formGroup]="loginForm"  (ngSubmit)="onSubmit()">
-      <mat-card-content>
-         <mat-form-field class="full-width">
-            <mat-label>Email</mat-label>
-            <input  matInput  placeholder="Email" formControlName ="Email" required>
-            <mat-error *ngFor="let validation of account_validation_messages.Email">
-               <mat-error class="error-message" *ngIf="loginForm.get('Email').hasError(validation.type) && (loginForm.get('Email').dirty || loginForm.get('Email').touched)">{{validation.message}}</mat-error>
-            </mat-error>
-         </mat-form-field>
-         <mat-form-field class="full-width">
-            <mat-label>Password</mat-label>
-            <input type="password"  matInput  placeholder="Password" formControlName ="Password" required>
-            <mat-error *ngFor="let validation of account_validation_messages.Password">
-               <mat-error class="error-message" *ngIf="loginForm.get('Password').hasError(validation.type) && (loginForm.get('Password').dirty || loginForm.get('Password').touched)">{{validation.message}}</mat-error>
-            </mat-error>
-         </mat-form-field>
-      </mat-card-content>
-   <mat-card-actions>
-      <button mat-raised-button type="submit" color="primary" [disabled]="!loginForm.valid">Login</button>
-   </mat-card-actions>
-</form>
-</mat-card>
+<div class = "componentwrapperbox">
+   <mat-toolbar color = "primary" class="mat-elevation-z6">
+      <span>Login</span>
+    </mat-toolbar>
+    <mat-toolbar color = "warn" *ngIf="error">
+       <span>Login failed</span>
+     </mat-toolbar>
+    <mat-card class="my-card">
+       <form [formGroup]="loginForm"  (ngSubmit)="onSubmit()">
+          <mat-card-content>
+             <mat-form-field class="full-width">
+                <mat-label>Email</mat-label>
+                <input  matInput  placeholder="Email" formControlName ="Email" required>
+                <mat-error *ngFor="let validation of account_validation_messages.Email">
+                   <mat-error class="error-message" *ngIf="loginForm.get('Email').hasError(validation.type) && (loginForm.get('Email').dirty || loginForm.get('Email').touched)">{{validation.message}}</mat-error>
+                </mat-error>
+             </mat-form-field>
+             <mat-form-field class="full-width">
+                <mat-label>Password</mat-label>
+                <input type="password"  matInput  placeholder="Password" formControlName ="Password" required>
+                <mat-error *ngFor="let validation of account_validation_messages.Password">
+                   <mat-error class="error-message" *ngIf="loginForm.get('Password').hasError(validation.type) && (loginForm.get('Password').dirty || loginForm.get('Password').touched)">{{validation.message}}</mat-error>
+                </mat-error>
+             </mat-form-field>
+          </mat-card-content>
+       <mat-card-actions>
+          <button mat-raised-button type="submit" color="primary" [disabled]="!loginForm.valid">Login</button>
+       </mat-card-actions>
+    </form>
+    </mat-card>
+</div>

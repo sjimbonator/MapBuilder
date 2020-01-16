@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MapListService } from '../../services/map-list.service'
 import {Map} from '../../models/map'
 import { Observable } from 'rxjs';
 import  * as globals from '../../globals';
+import { MapService } from 'src/app/services/map.service';
 
 @Component({
   selector: 'app-map-builder',
@@ -15,47 +15,34 @@ export class MapBuilderComponent implements OnInit {
   mapName = '';
   buttonState = false;
 
-  constructor(private listService: MapListService) { }
+  constructor(private mapService : MapService) { }
 
   getList(): void
   {
-    this.maps = this.listService.getMaps();
+    this.maps = this.mapService.getMaps();
   }
   addMap(mapName : string): void
   {
     console.log(mapName);
     let map = new Map();
     map.name = mapName;
-    this.listService.postMap(map).subscribe(() => this.maps = this.listService.getMaps());
+    this.mapService.postMap(map).subscribe(() => this.maps = this.mapService.getMaps());
     
   }
   removeMap(Id : string): void
   {
-    if (confirm("Are you sure you want to delete this ?")) { this.listService.deleteMap(Id).subscribe(() => this.maps = this.listService.getMaps()) }
+    if (confirm("Are you sure you want to delete this ?")) { this.mapService.deleteMap(Id).subscribe(() => this.maps = this.mapService.getMaps()) }
     
   }
   
-  checkInput(){
-    if (this.mapName === ''){
-      this.buttonState = true;
-      return this.buttonState;
-    }
-  }
-
-  resetInput(){
-    this.mapName = '';
-  }
-
   checkAuthenticated() {return globals.isAuthenticated;}
 
   ngOnInit() {
     this.getList();
-    
   }
 
   mapClick(map:Map)
   {
-    globals.setCurrentMap(map);
-    console.log(globals.currentMap.name + ' ' + globals.currentMap.id + " " + globals.currentMap.userId);
+    this.mapService.setCurrentMap(map);
   }
 }

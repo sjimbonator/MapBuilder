@@ -1,0 +1,23 @@
+
+    <mat-list>
+        <mat-list-item>
+            <mat-form-field matLine floatLabel = "never" > 
+                <input [(ngModel)]="layerName" matInput placeholder="Layer Name" #filterName >
+            </mat-form-field>
+            <a mat-icon-button (click)="addLayer(layerName);layerName = '';" [disabled]="layerName == ''"> <mat-icon color = "secondary">add_circle_outline</mat-icon></a>
+        </mat-list-item>
+    </mat-list>
+    <mat-nav-list>
+    
+    
+        <mat-divider></mat-divider>
+    
+        <mat-list-item *ngFor="let layer of layers | async">
+            <mat-divider></mat-divider>
+            
+            <a matLine  (click)="layerClick(layer)">{{layer.name}}</a>
+            <button mat-icon-button >
+                <a mat-icon-button (click)="removeLayer(layer.id)"><mat-icon  color = "secondary">remove_circle_outline</mat-icon></a>
+            </button>
+        </mat-list-item>
+    </mat-nav-list>

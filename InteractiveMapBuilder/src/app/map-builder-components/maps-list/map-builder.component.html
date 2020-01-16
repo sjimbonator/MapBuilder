@@ -8,7 +8,7 @@
                 <mat-form-field matLine floatLabel = "never" > 
                     <input [(ngModel)]="mapName" matInput placeholder="Map Name" #filterName >
                 </mat-form-field>
-                <a mat-icon-button (click)="addMap(mapName);resetInput()" [disabled]="checkInput()"> <mat-icon color = "secondary">add_circle_outline</mat-icon></a>
+                <a mat-icon-button (click)="addMap(mapName);mapName = '';" [disabled]="mapName == ''"> <mat-icon color = "secondary">add_circle_outline</mat-icon></a>
             </mat-list-item>
         </mat-list>
         <mat-nav-list>

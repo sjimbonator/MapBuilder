@@ -3,21 +3,21 @@
 </mat-toolbar>
     
 <div class="basic-container">
-    <mat-grid-list cols="6" rowHeight="2 : 5" gutterSize = "16px">
+    <mat-grid-list cols="6" [rowHeight]="rowHeight" gutterSize = "16px">
     
-        <mat-grid-tile [colspan]="4">
+        <mat-grid-tile [colspan]="mapColSpan">
             <div class="componentcontainer">
                 <app-layers-list></app-layers-list>
             </div>
         </mat-grid-tile>
         
-        <mat-grid-tile [colspan]="1">
+        <mat-grid-tile [colspan]="toolColSpan">
             <div class="componentcontainer">
                 <app-layers-list></app-layers-list>
             </div>
         </mat-grid-tile>
         
-        <mat-grid-tile [colspan]="1">
+        <mat-grid-tile [colspan]="toolColSpan">
             <div class="componentcontainer">
                 <app-layers-list></app-layers-list>
             </div>

@@ -1,0 +1,23 @@
+button{
+    width: 100%;
+    margin-right: 10rem;
+}
+
+.column1 {
+    float: left;
+    padding: 10px;
+    width: 30%;
+  }
+
+  .column2 {
+    float: left;
+    padding: 10px;
+    width: 45%;
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }

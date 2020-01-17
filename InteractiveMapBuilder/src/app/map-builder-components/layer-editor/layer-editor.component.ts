@@ -12,4 +12,21 @@ export class LayerEditorComponent implements OnInit {
   ngOnInit() {
   }
 
+  files: any[] = [];
+  
+  prepareFilesList(files: Array<any>) {
+    for (const item of files) {
+      item.progress = 0;
+      this.files.push(item);    
+      console.log(item);
+    }
+  }
+  onFileDropped($event)
+  {
+    this.prepareFilesList($event);
+  }
+  fileBrowseHandler(files) {
+    this.prepareFilesList(files);
+  }
+
 }

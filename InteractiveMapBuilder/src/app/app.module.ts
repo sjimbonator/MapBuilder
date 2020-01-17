@@ -16,6 +16,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
 
+
 //Angular Material Components
 import 
 {
@@ -58,6 +59,7 @@ import { MapBuilderShellComponent } from './map-builder-components/map-builder-s
 import { LayersListComponent } from './map-builder-components/layers-list/layers-list.component';
 import { ToolbarComponent } from './map-builder-components/toolbar/toolbar.component';
 import { LayerEditorComponent } from './map-builder-components/layer-editor/layer-editor.component';
+import { DndDirective } from './directives/dnd.directive';
 
 const appRoutes = [
   {path: 'map-viewer', component : MapViewerComponent},
@@ -120,7 +122,8 @@ const appRoutes = [
     MapBuilderShellComponent,
     LayersListComponent,
     ToolbarComponent,
-    LayerEditorComponent
+    LayerEditorComponent,
+    DndDirective
   ],
   
   providers: [],

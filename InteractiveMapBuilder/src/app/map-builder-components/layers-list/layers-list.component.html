@@ -11,7 +11,7 @@
     
     
         <mat-divider></mat-divider>
-    
+        
         <mat-list-item *ngFor="let layer of layers | async">
             <mat-divider></mat-divider>
             
@@ -20,4 +20,5 @@
                 <a mat-icon-button (click)="removeLayer(layer.id)"><mat-icon  color = "secondary">remove_circle_outline</mat-icon></a>
             </button>
         </mat-list-item>
+        
     </mat-nav-list>

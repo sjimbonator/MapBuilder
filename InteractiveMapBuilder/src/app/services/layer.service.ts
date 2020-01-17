@@ -13,9 +13,9 @@ export class LayerService {
 
   constructor(private http: HttpClient, private mapService: MapService) { }
 
-  currentLayer : Layer;
+  currentLayer : Layer = new Layer();
   setCurrentLayer(layer : Layer) { this.currentLayer = layer; } 
-  clearCurrentLayer() { this.currentLayer = undefined; }
+  clearCurrentLayer() { this.currentLayer = new Layer(); }
 
   private getCurrentMapId() : number { return this.mapService.currentMap.id;}
 
@@ -24,17 +24,18 @@ export class LayerService {
   //Gets all layers of the current map
   getLayers(): Observable<Layer[]> {return this.http.get<Layer[]>(this.layerUrl+"/"+this.getCurrentMapId(), globals.httpOptions);}
   //Deletes a Layer
-  deleteLayer(id: number): Observable<Map> 
+  deleteLayer(id: number): Observable<Layer> 
   {
     if(this.currentLayer.id == id) {this.clearCurrentLayer();}
-    return this.http.delete<Map>(this.layerUrl+"/"+id, globals.httpOptions);
+    return this.http.delete<Layer>(this.layerUrl+"/"+id, globals.httpOptions);
   }
   //Uploads a new Layer
   postLayer(name: string): Observable<Layer> 
   {
-    let layer:Layer;
+    let layer:Layer= new Layer();
     layer.name = name;
     layer.mapId = this.getCurrentMapId();
+    console.log(this.getCurrentMapId());
     return this.http.post<Layer>(this.layerUrl, layer, globals.httpOptions);
   }
 

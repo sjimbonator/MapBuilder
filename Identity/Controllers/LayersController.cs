@@ -24,6 +24,7 @@ namespace Identity.Controllers
             return db.Layers.Where(layer => layer.MapId == id);
         }
 
+        [Authorize]
         // PUT: api/Layers/5
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutLayer(int id, Layer layer)
@@ -59,6 +60,7 @@ namespace Identity.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        [Authorize]
         // POST: api/Layers
         [ResponseType(typeof(Layer))]
         public async Task<IHttpActionResult> PostLayer(Layer layer)
@@ -74,6 +76,7 @@ namespace Identity.Controllers
             return CreatedAtRoute("DefaultApi", new { id = layer.Id }, layer);
         }
 
+        [Authorize]
         // DELETE: api/Layers/5
         [ResponseType(typeof(Layer))]
         public async Task<IHttpActionResult> DeleteLayer(int id)

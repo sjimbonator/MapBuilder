@@ -57,6 +57,7 @@ import { MapBuilderComponent } from './map-builder-components/maps-list/map-buil
 import { MapBuilderShellComponent } from './map-builder-components/map-builder-shell/map-builder-shell.component';
 import { LayersListComponent } from './map-builder-components/layers-list/layers-list.component';
 import { ToolbarComponent } from './map-builder-components/toolbar/toolbar.component';
+import { LayerEditorComponent } from './map-builder-components/layer-editor/layer-editor.component';
 
 const appRoutes = [
   {path: 'map-viewer', component : MapViewerComponent},
@@ -118,7 +119,8 @@ const appRoutes = [
     MapBuilderComponent,
     MapBuilderShellComponent,
     LayersListComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    LayerEditorComponent
   ],
   
   providers: [],

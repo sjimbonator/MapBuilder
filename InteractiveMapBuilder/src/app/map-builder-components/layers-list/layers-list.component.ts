@@ -12,6 +12,7 @@ import { LayerService } from 'src/app/services/layer.service';
 export class LayersListComponent implements OnInit {
 
   layers: Observable<Layer[]>;
+  layerName = '';
 
   constructor(private layerService : LayerService) { }
 
@@ -19,9 +20,11 @@ export class LayersListComponent implements OnInit {
 
   layerClick(layer:Layer) {this.layerService.setCurrentLayer(layer);}
 
-  removeLayer(layerId:number) {this.layerService.deleteLayer(layerId);}
+  removeLayer(layerId:number) {this.layerService.deleteLayer(layerId).subscribe(() => this.layers = this.layerService.getLayers());}
   
-  addLayer(name:string){this.layerService.postLayer(name);}
+  addLayer(name:string){
+    this.layerService.postLayer(name).subscribe(() => this.layers = this.layerService.getLayers());
+  }
 
   ngOnInit() { this.getLayers(); }
 

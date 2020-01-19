@@ -35,7 +35,7 @@ export class DndDirective {
     this.fileOver = false;
     let files = evt.dataTransfer.files;
     if (files.length > 0) {
-      this.fileDropped.emit(files);
+      this.fileDropped.emit(files.item(0));
     }
   }
 }

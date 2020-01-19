@@ -1,4 +1,8 @@
-<div class="dropzone" appDnd (fileDropped)="onFileDropped($event)">
+<mat-toolbar color = "warn" *ngIf="fileError">
+    <span>Failed to upload File.</span>
+  </mat-toolbar>
+  
+  <div *ngIf="needImg()" class="dropzone" appDnd (fileDropped)="onFileDropped($event)">
     <input type="file" #fileDropRef id="fileDropRef" multiple (change)="fileBrowseHandler($event.target.files)"/>
     <div class ="center">
         <h3>Drag and drop your background image here</h3>
@@ -6,3 +10,14 @@
         <label for="fileDropRef"><button mat-raised-button color="primary">Browse for file</button></label>
     </div>
 </div>
+
+<div *ngIf="needLayer()" class="dropzone">
+    <div class ="center">
+        <h3>Please select a layer to start editing.</h3>
+    </div>
+</div>
+
+<div *ngIf="!needLayer() && !needImg()">
+    Hier komt de editor UwU
+</div>
+

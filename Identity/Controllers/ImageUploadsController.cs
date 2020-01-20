@@ -34,14 +34,16 @@ namespace Identity.Controllers
             string uploadingFileName = multiFormDataStreamProvider
                 .FileData.Select(x => x.LocalFileName).FirstOrDefault();
 
+            string baseUrl = Request.RequestUri.GetLeftPart(UriPartial.Authority);
+            string filename = Path.GetFileName(uploadingFileName);
+            baseUrl += "/UploadedFiles/" + filename;
+
             // Create response, assigning appropriate values to properties 
             return new FileUploadDetails
             {
-                FilePath = uploadingFileName,
+                FilePath = baseUrl,
 
-                FileName = Path.GetFileName(uploadingFileName),
-
-                FileLength = new FileInfo(uploadingFileName).Length,
+                FileName = filename
             };
         }
     }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Map } from '../models/map';
 import  * as globals from '../globals';
@@ -12,6 +12,7 @@ import { MapService } from './map.service';
 export class LayerService {
 
   constructor(private http: HttpClient, private mapService: MapService) { }
+  public needsUpdate :Observable<boolean> = new Observable();
 
   currentLayer : Layer = new Layer();
   setCurrentLayer(layer : Layer) { this.currentLayer = layer; } 
@@ -37,6 +38,11 @@ export class LayerService {
     layer.mapId = this.getCurrentMapId();
     console.log(this.getCurrentMapId());
     return this.http.post<Layer>(this.layerUrl, layer, globals.httpOptions);
+  }
+  //Edits an existing Layer
+  putLayer(layer : Layer): Observable<Layer>
+  {
+    return this.http.put<Layer>(this.layerUrl+"/"+this.currentLayer.id, layer, globals.httpOptions);
   }
 
 }

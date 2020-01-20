@@ -3,7 +3,6 @@ import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Map } from '../models/map';
 import  * as globals from '../globals';
-import { Layer } from '../models/layer';
 
 @Injectable({
   providedIn: 'root'

@@ -15,6 +15,12 @@ export class LayersListComponent implements OnInit {
   layerName = '';
 
   constructor(private layerService : LayerService) { }
+  
+  checkSelected(layer:Layer): boolean 
+  {
+    if (this.layerService.currentLayer == layer) return true;
+    return false;
+  }
 
   getLayers() : void {this.layers = this.layerService.getLayers();}
 

@@ -3,6 +3,7 @@ import { LayerService } from 'src/app/services/layer.service';
 import { ImageUploadService } from 'src/app/services/image-upload.service';
 import { FileDesc } from 'src/app/models/fileDesc';
 import { Layer } from 'src/app/models/layer';
+import { extent, proj } from 'openlayers';
 
 @Component({
   selector: 'app-layer-editor',
@@ -82,5 +83,19 @@ export class LayerEditorComponent implements OnInit {
   fileBrowseHandler(files) {
     this.handleImage(files);
   }
+
+  public zoom = 5;
+  public opacity = 1.0;
+   extent: ol.Extent = [0, 0, 1024, 968];
+
+  po: olx.ProjectionOptions = {
+    code: 'xkcd-image',
+    units: 'pixels',
+    extent: [0, 0, 1024, 968]
+  }
+
+  projection = new proj.Projection(this.po);
+ 
+  getCenter = ext =>  extent.getCenter(ext)
 
 }

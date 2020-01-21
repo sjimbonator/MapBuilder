@@ -17,14 +17,16 @@
     </div>
 </div>
 
-<div *ngIf="!needLayer() && !needImg()">
-    <aol-map [width]="'500px'" [height]="'300px'">
-        <aol-view [zoom]="2">
-            <aol-coordinate [x]="5.795122" [y]="45.210225" [srid]="'EPSG:4326'"></aol-coordinate>
+<div *ngIf="!needLayer() && !needImg()" class ="dropzone">
+    <aol-map [width]="'100%'" [height]="'100%'">
+    <aol-interaction-default>
+        <aol-view [projection]="projection" [zoom]="5" [center]="[512, 484]">
         </aol-view>
-        <aol-layer-tile>
-            <aol-source-osm></aol-source-osm>
-        </aol-layer-tile>
-     </aol-map>
+        <aol-layer-image [opacity]="opacity" [extent]="extent">
+          <aol-source-imagestatic [url]="'https://imgs.xkcd.com/comics/online_communities.png'" [projection]="projection" [imageExtent]="extent">
+          </aol-source-imagestatic>
+        </aol-layer-image>
+    </aol-interaction-default>
+    </aol-map>
 </div>
 

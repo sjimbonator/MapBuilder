@@ -23,7 +23,7 @@
         <aol-view [projection]="projection" [zoom]="5" [center]="[512, 484]">
         </aol-view>
         <aol-layer-image [opacity]="opacity" [extent]="extent">
-          <aol-source-imagestatic [url]="'https://imgs.xkcd.com/comics/online_communities.png'" [projection]="projection" [imageExtent]="extent">
+          <aol-source-imagestatic [url]=this.layerService.currentLayer.imageUrl [projection]="projection" [imageExtent]="extent">
           </aol-source-imagestatic>
         </aol-layer-image>
     </aol-interaction-default>

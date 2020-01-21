@@ -13,6 +13,7 @@ import { extent, proj } from 'openlayers';
 export class LayerEditorComponent implements OnInit {
 
   fileError : boolean = false;
+  imageurl : string = undefined;
   constructor(private layerService : LayerService, private imgService : ImageUploadService) { }
 
   ngOnInit() {
@@ -31,7 +32,7 @@ export class LayerEditorComponent implements OnInit {
     else 
     {
       if(this.layerService.currentLayer.imageUrl == undefined){return true;}
-      else{return false;}
+      else{this.imageurl = this.layerService.currentLayer.imageUrl; return false;}
     }
   }
 

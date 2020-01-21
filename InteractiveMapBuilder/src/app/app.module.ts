@@ -15,6 +15,8 @@ import { LoginComponent } from './login/login.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
+import { AngularOpenlayersModule } from "ngx-openlayers";
+
 
 
 //Angular Material Components
@@ -109,7 +111,8 @@ const appRoutes = [
     MatSortModule,
     MatPaginatorModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    AngularOpenlayersModule
   ],
   declarations: [
     AppComponent,

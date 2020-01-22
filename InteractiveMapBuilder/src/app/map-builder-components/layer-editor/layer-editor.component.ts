@@ -3,7 +3,7 @@ import { LayerService } from 'src/app/services/layer.service';
 import { ImageUploadService } from 'src/app/services/image-upload.service';
 import { FileDesc } from 'src/app/models/fileDesc';
 import { Layer } from 'src/app/models/layer';
-import { extent, proj } from 'openlayers';
+import { extent, proj, Feature, geom  } from 'openlayers';
 
 @Component({
   selector: 'app-layer-editor',
@@ -14,6 +14,23 @@ export class LayerEditorComponent implements OnInit {
 
   fileError : boolean = false;
   imageurl : string = undefined;
+
+  //variables for angular openlayers
+  public zoom = 5;
+  public opacity = 1.0;
+
+  extent: ol.Extent = [0, 0, 500, 500];
+
+  po: olx.ProjectionOptions = {
+    code: 'xkcd-image',
+    units: 'pixels',
+    extent: [0, 0, 500, 500]
+  }
+
+  projection = new proj.Projection(this.po);
+ 
+  getCenter = ext =>  extent.getCenter(ext)
+
   constructor(private layerService : LayerService, private imgService : ImageUploadService) { }
 
   ngOnInit() {
@@ -85,18 +102,10 @@ export class LayerEditorComponent implements OnInit {
     this.handleImage(files);
   }
 
-  public zoom = 5;
-  public opacity = 1.0;
-   extent: ol.Extent = [0, 0, 1024, 968];
-
-  po: olx.ProjectionOptions = {
-    code: 'xkcd-image',
-    units: 'pixels',
-    extent: [0, 0, 1024, 968]
+  endDrawing(feat: Feature) {
+    //ipv console.log values naar de api sturen
+    const point = feat.getGeometry() as geom.Point;
+    console.log(point.getCoordinates());
   }
-
-  projection = new proj.Projection(this.po);
- 
-  getCenter = ext =>  extent.getCenter(ext)
 
 }

@@ -10,6 +10,9 @@
     border: dashed 1px white;
     margin: 10px;
 }
+.disappear{
+    display : none;
+}
 .center 
 {
     text-align: center;

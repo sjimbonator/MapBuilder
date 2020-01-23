@@ -4,6 +4,9 @@ import { ImageUploadService } from 'src/app/services/image-upload.service';
 import { FileDesc } from 'src/app/models/fileDesc';
 import { Layer } from 'src/app/models/layer';
 import { extent, proj, Feature, geom  } from 'openlayers';
+import { MarkerService } from 'src/app/services/marker.service';
+import { Observable } from 'rxjs';
+import { Marker } from 'src/app/models/marker';
 
 @Component({
   selector: 'app-layer-editor',
@@ -12,6 +15,8 @@ import { extent, proj, Feature, geom  } from 'openlayers';
 })
 export class LayerEditorComponent implements OnInit {
 
+  constructor(private layerService : LayerService, private markerService : MarkerService, private imgService : ImageUploadService) { }
+
   fileError : boolean = false;
   imageurl : string = undefined;
 
@@ -19,21 +24,30 @@ export class LayerEditorComponent implements OnInit {
   public zoom = 5;
   public opacity = 1.0;
 
-  extent: ol.Extent = [0, 0, 500, 500];
+  extent: ol.Extent = [0, 0, 1000, 1000];
 
   po: olx.ProjectionOptions = {
     code: 'xkcd-image',
     units: 'pixels',
-    extent: [0, 0, 500, 500]
+    extent: [0, 0, 1000, 1000]
   }
 
   projection = new proj.Projection(this.po);
  
   getCenter = ext =>  extent.getCenter(ext)
 
-  constructor(private layerService : LayerService, private imgService : ImageUploadService) { }
+  endDrawing(feat: Feature) {
+    const point = feat.getGeometry() as geom.Point;
+    let coords : number[] = point.getCoordinates();
+    console.log(coords);
+    let marker : Marker = new Marker();
+    marker.x=coords[0];
+    marker.y=coords[1];
+    this.markerService.postMarker(marker);
+  }
 
   ngOnInit() {
+    //Clears current layer so the "canvas" is empty when you start editing a map until you select a layer
     this.layerService.clearCurrentLayer();
   }
 
@@ -52,6 +66,8 @@ export class LayerEditorComponent implements OnInit {
       else{this.imageurl = this.layerService.currentLayer.imageUrl; return false;}
     }
   }
+
+  getMarkers():Observable<Marker[]> {return this.markerService.getMarkers();}
 
   img: File;
   
@@ -100,12 +116,6 @@ export class LayerEditorComponent implements OnInit {
   }
   fileBrowseHandler(files) {
     this.handleImage(files);
-  }
-
-  endDrawing(feat: Feature) {
-    //ipv console.log values naar de api sturen
-    const point = feat.getGeometry() as geom.Point;
-    console.log(point.getCoordinates());
   }
 
 }

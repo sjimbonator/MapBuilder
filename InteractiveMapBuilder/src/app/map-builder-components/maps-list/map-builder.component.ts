@@ -29,7 +29,7 @@ export class MapBuilderComponent implements OnInit {
     this.mapService.postMap(map).subscribe(() => this.maps = this.mapService.getMaps());
     
   }
-  removeMap(Id : string): void
+  removeMap(Id : number): void
   {
     if (confirm("Are you sure you want to delete this ?")) { this.mapService.deleteMap(Id).subscribe(() => this.maps = this.mapService.getMaps()) }
     

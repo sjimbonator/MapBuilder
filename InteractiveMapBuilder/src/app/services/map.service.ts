@@ -21,11 +21,11 @@ export class MapService {
   //Gets all maps
   getMaps(): Observable<Map[]> {return this.http.get<Map[]>(this.mapUrl, globals.httpOptions);}
   //Gets a specific map based on Id
-  getMap(Id: string): Observable<Map> {return this.http.get<Map>(this.mapUrl+"/"+Id, globals.httpOptions);}
+  getMap(id: number): Observable<Map> {return this.http.get<Map>(this.mapUrl+"/"+id, globals.httpOptions);}
   //Replaces a Map with a new Map object
   putMap(map: Map): Observable<Map> {return this.http.put<Map>(this.mapUrl+"/"+map.id, map, globals.httpOptions)}
   //Uploads a new Map
   postMap(map: Map): Observable<Map> {return this.http.post<Map>(this.mapUrl, map, globals.httpOptions)}
   //Deletes a Map
-  deleteMap(Id: string): Observable<Map> {return this.http.delete<Map>(this.mapUrl+"/"+Id, globals.httpOptions)}
+  deleteMap(id: number): Observable<Map> {return this.http.delete<Map>(this.mapUrl+"/"+id, globals.httpOptions)}
 }

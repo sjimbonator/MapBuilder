@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { Observable, of, Subject } from 'rxjs';
+import { Injectable, OnInit } from '@angular/core';
+import { Observable, of, Subject, BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Map } from '../models/map';
 import  * as globals from '../globals';
@@ -9,14 +9,23 @@ import { MapService } from './map.service';
 @Injectable({
   providedIn: 'root'
 })
-export class LayerService {
+export class LayerService{
 
-  constructor(private http: HttpClient, private mapService: MapService) { }
-  public needsUpdate :Observable<boolean> = new Observable();
+  //Behaviour subject to push the current layer to all the components that need it.
+  private currentLayer : BehaviorSubject<Layer>;
 
-  currentLayer : Layer = new Layer();
-  setCurrentLayer(layer : Layer) { this.currentLayer = layer; } 
-  clearCurrentLayer() { this.currentLayer = new Layer(); }
+  constructor(private http: HttpClient, private mapService: MapService) 
+  {
+     this.currentLayer = new BehaviorSubject<Layer>(new Layer());
+     this.getCurrentLayer().subscribe( x => this.currLayer = x) 
+  }
+
+  public setCurrentLayer(layer : Layer) {this.clearCurrentLayer(); this.currentLayer.next(layer); } 
+  public clearCurrentLayer() { this.currentLayer.next(new Layer());}
+  public getCurrentLayer(): Observable<Layer> { return this.currentLayer.asObservable();}
+
+  private currLayer: Layer;
+
 
   private getCurrentMapId() : number { return this.mapService.currentMap.id;}
 
@@ -27,7 +36,7 @@ export class LayerService {
   //Deletes a Layer
   deleteLayer(id: number): Observable<Layer> 
   {
-    if(this.currentLayer.id == id) {this.clearCurrentLayer();}
+    if(this.currLayer.id == id) {this.clearCurrentLayer();}
     return this.http.delete<Layer>(this.layerUrl+"/"+id, globals.httpOptions);
   }
   //Uploads a new Layer
@@ -42,7 +51,7 @@ export class LayerService {
   //Edits an existing Layer
   putLayer(layer : Layer): Observable<Layer>
   {
-    return this.http.put<Layer>(this.layerUrl+"/"+this.currentLayer.id, layer, globals.httpOptions);
+    return this.http.put<Layer>(this.layerUrl+"/"+this.currLayer.id, layer, globals.httpOptions);
   }
 
 }

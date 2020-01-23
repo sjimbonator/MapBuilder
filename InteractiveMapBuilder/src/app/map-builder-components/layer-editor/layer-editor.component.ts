@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, Input } from '@angular/core';
 import { LayerService } from 'src/app/services/layer.service';
 import { ImageUploadService } from 'src/app/services/image-upload.service';
 import { FileDesc } from 'src/app/models/fileDesc';
@@ -14,22 +14,29 @@ import { Marker } from 'src/app/models/marker';
   styleUrls: ['./layer-editor.component.css']
 })
 export class LayerEditorComponent implements OnInit {
+  Markers : Observable<Marker[]>;
+  testNumber : number = 111;
+  constructor(private changeDetectorRef: ChangeDetectorRef,private layerService : LayerService, private markerService : MarkerService, private imgService : ImageUploadService) { }
 
-  constructor(private layerService : LayerService, private markerService : MarkerService, private imgService : ImageUploadService) { }
+  private currLayer: Layer;
+  ngOnInit()
+  {  
+    this.layerService.clearCurrentLayer();
+    this.layerService.getCurrentLayer().subscribe( x => {this.currLayer = x;  if(x.id!=undefined){this.getMarkers(); this.changeDetectorRef.detectChanges(); } } ) 
+  }
 
   fileError : boolean = false;
-  imageurl : string = undefined;
 
   //variables for angular openlayers
   public zoom = 5;
   public opacity = 1.0;
 
-  extent: ol.Extent = [0, 0, 1000, 1000];
+  extent: ol.Extent = [0, 0, 1920, 1080];
 
   po: olx.ProjectionOptions = {
     code: 'xkcd-image',
     units: 'pixels',
-    extent: [0, 0, 1000, 1000]
+    extent: [0, 0, 1920, 1080]
   }
 
   projection = new proj.Projection(this.po);
@@ -43,18 +50,17 @@ export class LayerEditorComponent implements OnInit {
     let marker : Marker = new Marker();
     marker.x=coords[0];
     marker.y=coords[1];
-    this.markerService.postMarker(marker);
-  }
-
-  ngOnInit() {
-    //Clears current layer so the "canvas" is empty when you start editing a map until you select a layer
-    this.layerService.clearCurrentLayer();
+    this.markerService.postMarker(marker).subscribe(
+      x => console.log(x),
+      err => console.log(err),
+      () => console.log("biem")
+    );
   }
 
   needLayer() : boolean 
   { 
-    if(this.layerService.currentLayer == undefined) { return true;}
-    if(this.layerService.currentLayer.name == undefined) {return true;}
+    if(this.currLayer == undefined) {return true;}
+    if(this.currLayer.name == undefined) {return true;}
     else {return false;}
   }
   needImg(): boolean 
@@ -62,12 +68,12 @@ export class LayerEditorComponent implements OnInit {
     if(this.needLayer()){return false;}
     else 
     {
-      if(this.layerService.currentLayer.imageUrl == undefined){return true;}
-      else{this.imageurl = this.layerService.currentLayer.imageUrl; return false;}
+      if(this.currLayer.imageUrl == undefined){return true;}
+      else{return false;}
     }
   }
 
-  getMarkers():Observable<Marker[]> {return this.markerService.getMarkers();}
+  getMarkers():void {this.Markers = this.markerService.getMarkers();}
 
   img: File;
   
@@ -92,7 +98,7 @@ export class LayerEditorComponent implements OnInit {
   }
   //code to get new layer object with image url
   updateLayerImgUrl(fileDesc:FileDesc){
-  let layer : Layer = this.layerService.currentLayer;
+  let layer : Layer = this.currLayer;
   layer.imageUrl = fileDesc.filePath;
   this.layerService.setCurrentLayer(layer)
   this.layerService.putLayer(layer).subscribe(

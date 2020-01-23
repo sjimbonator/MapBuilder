@@ -18,23 +18,24 @@
 </div>
 
 <div *ngIf="!needLayer() && !needImg()" class ="dropzone">
-
     <aol-map [width]="'100%'" [height]="'100%'">
     <aol-interaction-default>
         
         <aol-layer-image [opacity]="opacity" [extent]="extent">
-          <aol-source-imagestatic [url]=this.layerService.currentLayer.imageUrl [projection]="projection" [imageExtent]="extent">
+          <aol-source-imagestatic [url]=this.currLayer.imageUrl [projection]="projection" [imageExtent]="extent">
           </aol-source-imagestatic>
         </aol-layer-image>
         
     <aol-layer-vector>
 
-        <aol-source-vector #sourceVector>
-            <aol-feature>
-                <aol-geometry-point *ngFor="let marker of getMarkers() | async">
-                    <aol-coordinate [x]="marker.x" [y]="marker.y"></aol-coordinate>
-                </aol-geometry-point>
-            </aol-feature>
+        <aol-source-vector #sourceVector>    
+
+                <aol-feature [id]="marker.id" *ngFor="let marker of Markers | async">
+                    <aol-geometry-point>
+                        <aol-coordinate [x]="marker.x" [y]="marker.y"></aol-coordinate>
+                    </aol-geometry-point>
+                </aol-feature>
+
         </aol-source-vector>   
 
     </aol-layer-vector>
@@ -44,6 +45,5 @@
 </aol-interaction-default>
     <aol-view [projection]="projection" [zoom]="0" [center]="[512, 484]"></aol-view>   
     </aol-map>
-    
 </div>
 

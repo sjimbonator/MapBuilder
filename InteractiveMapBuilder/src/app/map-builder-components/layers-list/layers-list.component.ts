@@ -15,10 +15,18 @@ export class LayersListComponent implements OnInit {
   layerName = '';
 
   constructor(private layerService : LayerService) { }
+
+  private currLayer: Layer;
+  ngOnInit()
+  {  
+    this.getLayers();
+    this.layerService.clearCurrentLayer();
+    this.layerService.getCurrentLayer().subscribe( x => this.currLayer = x ) 
+  }
   
   checkSelected(layer:Layer): boolean 
   {
-    if (this.layerService.currentLayer == layer) return true;
+    if (this.currLayer == layer) return true;
     return false;
   }
 
@@ -32,6 +40,5 @@ export class LayersListComponent implements OnInit {
     this.layerService.postLayer(name).subscribe(() => this.layers = this.layerService.getLayers());
   }
 
-  ngOnInit() { this.getLayers(); }
 
 }

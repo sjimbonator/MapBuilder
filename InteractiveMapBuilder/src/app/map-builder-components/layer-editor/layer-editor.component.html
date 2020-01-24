@@ -32,7 +32,7 @@
 
                 <aol-feature [id]="marker.id" *ngFor="let marker of Markers | async">
                     <aol-geometry-point>
-                        <aol-coordinate [x]="marker.x" [y]="marker.y"></aol-coordinate>
+                        <aol-coordinate [x]="marker.x" [y]="marker.y" [srid] = "'EPSG:3857'"></aol-coordinate>
                     </aol-geometry-point>
                 </aol-feature>
 
@@ -43,7 +43,7 @@
     <aol-interaction-draw type="Point" [source]="sourceVector.instance" (onDrawEnd)="endDrawing($event.feature)"></aol-interaction-draw>
 
 </aol-interaction-default>
-    <aol-view [projection]="projection" [zoom]="0" [center]="[512, 484]"></aol-view>   
+    <aol-view [projection]="projection" [zoom]="2" [center]="[512, 484]"></aol-view>   
     </aol-map>
 </div>
 

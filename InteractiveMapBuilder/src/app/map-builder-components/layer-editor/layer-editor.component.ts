@@ -5,7 +5,7 @@ import { FileDesc } from 'src/app/models/fileDesc';
 import { Layer } from 'src/app/models/layer';
 import { extent, proj, Feature, geom  } from 'openlayers';
 import { MarkerService } from 'src/app/services/marker.service';
-import { Observable } from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
 import { Marker } from 'src/app/models/marker';
 
 @Component({
@@ -15,22 +15,18 @@ import { Marker } from 'src/app/models/marker';
 })
 export class LayerEditorComponent implements OnInit {
   Markers : Observable<Marker[]>;
-  testNumber : number = 111;
   constructor(private changeDetectorRef: ChangeDetectorRef,private layerService : LayerService, private markerService : MarkerService, private imgService : ImageUploadService) { }
 
   private currLayer: Layer;
   ngOnInit()
   {  
     this.layerService.clearCurrentLayer();
-    this.layerService.getCurrentLayer().subscribe( x => {this.currLayer = x;  if(x.id!=undefined){this.getMarkers(); this.changeDetectorRef.detectChanges(); } } ) 
+    this.layerService.getCurrentLayer().subscribe( x => {  if(x.id!=undefined){this.setAolExtent(x);} else {this.currLayer = x; this.changeDetectorRef.detectChanges();}  } ) 
   }
 
   fileError : boolean = false;
 
   //variables for angular openlayers
-  public zoom = 5;
-  public opacity = 1.0;
-
   extent: ol.Extent = [0, 0, 1920, 1080];
 
   po: olx.ProjectionOptions = {
@@ -40,6 +36,31 @@ export class LayerEditorComponent implements OnInit {
   }
 
   projection = new proj.Projection(this.po);
+
+
+  setAolExtent(layer:Layer)
+  {
+    let loaded : ReplaySubject<number[]> = new ReplaySubject<number[]>();
+    loaded.subscribe(x => this.afterLoad(x[0],x[1],layer) );
+    
+    let img:HTMLImageElement = new Image();
+    img.onload = function(){loaded.next([img.width,img.height]);}
+    img.src=layer.imageUrl;
+    
+  }
+
+  afterLoad(width:number, height:number, layer : Layer)
+    {
+      this.extent= [0, 0, width, height];
+      this.po = {
+        code: 'xkcd-image',
+        units: 'pixels',
+        extent: [0, 0, width, height]
+      }
+      this.currLayer = layer;
+      this.getMarkers();
+      this.changeDetectorRef.detectChanges();
+    }
  
   getCenter = ext =>  extent.getCenter(ext)
 

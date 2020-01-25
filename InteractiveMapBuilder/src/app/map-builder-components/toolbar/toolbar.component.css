@@ -27,3 +27,8 @@
 }
 
 .selected{background-color: #212121;}
+
+.formfield{
+  width: calc(100% - 2px);
+  height: calc(100% - 2px);
+}

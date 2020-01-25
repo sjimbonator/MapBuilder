@@ -34,6 +34,9 @@
                     <aol-geometry-point>
                         <aol-coordinate [x]="marker.x" [y]="marker.y" [srid] = "'EPSG:3857'"></aol-coordinate>
                     </aol-geometry-point>
+                    <aol-style *ngIf="marker.imageUrl !=undefined && marker.imageUrl !='' ">
+                        <aol-style-icon [src]="marker.imageUrl" ></aol-style-icon>
+                </aol-style>
                 </aol-feature>
 
         </aol-source-vector>   

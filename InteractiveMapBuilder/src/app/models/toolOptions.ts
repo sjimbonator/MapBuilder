@@ -1,4 +1,8 @@
+import { Marker } from './marker';
+
 export class ToolOptions{
+    marker: Marker = new Marker();
+    
     private add: boolean = false;
     private remove: boolean = false;
     private edit: boolean = false;

@@ -7,7 +7,7 @@ import { ToolOptions } from '../models/toolOptions';
 })
 export class ToolService {
 
-   //Behaviour subject to push the current toolName to all the components that need it.
+   //Behaviour subject to push the current toolOptions to all the components that need it.
    private currentOptions : BehaviorSubject<ToolOptions>;
 
    constructor() 

@@ -11,12 +11,16 @@ import { MapService } from './map.service';
 })
 export class LayerService{
 
+  //Behaviour subject to automatically receive all the current layers
+  public currentLayers : BehaviorSubject<Observable<Layer[]>>;
+
   //Behaviour subject to push the current layer to all the components that need it.
   private currentLayer : BehaviorSubject<Layer>;
 
   constructor(private http: HttpClient, private mapService: MapService) 
   {
      this.currentLayer = new BehaviorSubject<Layer>(new Layer());
+     this.currentLayers = new BehaviorSubject<Observable<Layer[]>>(this.getLayers());
      this.getCurrentLayer().subscribe( x => this.currLayer = x) 
   }
 
@@ -37,7 +41,9 @@ export class LayerService{
   deleteLayer(id: number): Observable<Layer> 
   {
     if(this.currLayer.id == id) {this.clearCurrentLayer();}
-    return this.http.delete<Layer>(this.layerUrl+"/"+id, globals.httpOptions);
+    let del = this.http.delete<Layer>(this.layerUrl+"/"+id, globals.httpOptions);
+    this.currentLayers.next(this.getLayers());
+    return del;
   }
   //Uploads a new Layer
   postLayer(name: string): Observable<Layer> 
@@ -46,12 +52,16 @@ export class LayerService{
     layer.name = name;
     layer.mapId = this.getCurrentMapId();
     console.log(this.getCurrentMapId());
-    return this.http.post<Layer>(this.layerUrl, layer, globals.httpOptions);
+    let post = this.http.post<Layer>(this.layerUrl, layer, globals.httpOptions);
+    this.currentLayers.next(this.getLayers());
+    return post;
   }
   //Edits an existing Layer
   putLayer(layer : Layer): Observable<Layer>
   {
-    return this.http.put<Layer>(this.layerUrl+"/"+this.currLayer.id, layer, globals.httpOptions);
+    let put = this.http.put<Layer>(this.layerUrl+"/"+this.currLayer.id, layer, globals.httpOptions);
+    this.currentLayers.next(this.getLayers());
+    return put;
   }
 
 }

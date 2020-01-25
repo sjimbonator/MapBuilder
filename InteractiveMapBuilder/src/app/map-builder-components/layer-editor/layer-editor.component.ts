@@ -85,7 +85,7 @@ export class LayerEditorComponent implements OnInit {
     //if Add tool is selected
     if(this.CurrentToolOptions.getAdd())
     {
-      let marker : Marker = new Marker();
+      let marker : Marker = this.CurrentToolOptions.marker;
       marker.x=coords[0];
       marker.y=coords[1];
       this.markerService.postMarker(marker).subscribe(() => this.getMarkers());

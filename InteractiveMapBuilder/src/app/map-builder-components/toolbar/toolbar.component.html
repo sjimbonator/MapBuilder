@@ -31,3 +31,28 @@
 </div>
 
 <mat-divider></mat-divider>
+
+<div class="basic-container" *ngIf="options.getAdd() || options.getEdit()">
+    <form #markerForm="ngForm">
+
+        <div class="formfield">
+            <mat-form-field appearance = "outline" class="listcontainer">
+                <mat-label>Select a layer to link to</mat-label>
+                <mat-select [(value)]="options.marker.layerLinkId">
+                  <mat-option>None</mat-option>
+                  <mat-option value={{layer.id}} *ngFor="let layer of layers | async">{{layer.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+
+        <div class="formfield">
+            <mat-form-field appearance = "outline" class="listcontainer">
+                <mat-label>Marker image url</mat-label>
+                <input matInput type ="text" [(ngModel)]="options.marker.imageUrl" (ngModelChange)="pushOptions()" name ="imageUrl">
+                <mat-icon matSuffix>add_photo_alternate</mat-icon>
+          </mat-form-field>
+        </div>
+        
+    </form> 
+</div>

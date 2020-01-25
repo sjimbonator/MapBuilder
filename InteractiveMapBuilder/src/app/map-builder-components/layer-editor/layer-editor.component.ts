@@ -82,12 +82,28 @@ export class LayerEditorComponent implements OnInit {
     //store click coords in variable
     let coords : number[] = feat.coordinate;
 
+    //if Add tool is selected
     if(this.CurrentToolOptions.getAdd())
     {
       let marker : Marker = new Marker();
       marker.x=coords[0];
       marker.y=coords[1];
       this.markerService.postMarker(marker).subscribe(() => this.getMarkers());
+    }
+    //if Remove tool is selcted
+    else if(this.CurrentToolOptions.getRemove())
+    {
+
+    }
+    //if Edit tool is selcted
+    else if(this.CurrentToolOptions.getEdit())
+    {
+      
+    }
+    //if Select tool is selcted
+    else if(this.CurrentToolOptions.getSelect())
+    {
+      
     }
     
   }

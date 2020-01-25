@@ -17,7 +17,7 @@ export class ToolbarComponent implements OnInit {
     this.pushOptions();
   }
 
-  addClick() { this.options.activateAdd(); this.pushOptions(); }
+  addClick = function() { this.options.activateAdd(); this.pushOptions(); }
   removeClick() { this.options.activateRemove(); this.pushOptions(); }
   editClick() { this.options.activateEdit(); this.pushOptions(); }
   selectClick() { this.options.activateSelect(); this.pushOptions(); }

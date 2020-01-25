@@ -4,25 +4,25 @@
     
         <mat-grid-tile [colspan]="1">
             <div class="componentcontainer" >
-                <mat-list-item class="listcontainer" (click)="addClick()" [ngClass]="{'selected' : this.options.getAdd()}"><mat-icon class="center">add</mat-icon></mat-list-item>
+                <mat-list-item class="listcontainer" (click)="addClick()" [ngClass]="{'selected' : options.getAdd()}"><mat-icon class="center">add</mat-icon></mat-list-item>
             </div>
         </mat-grid-tile>
         
         <mat-grid-tile [colspan]="1">
             <div class="componentcontainer" >
-                <mat-list-item class="listcontainer" (click)="removeClick()" [ngClass]="{'selected' : this.options.getRemove()}"><mat-icon class="center">remove</mat-icon></mat-list-item>
+                <mat-list-item class="listcontainer" (click)="removeClick()" [ngClass]="{'selected' : options.getRemove()}"><mat-icon class="center">remove</mat-icon></mat-list-item>
             </div>
         </mat-grid-tile>
         
         <mat-grid-tile [colspan]="1">
             <div class="componentcontainer" >
-                <mat-list-item class="listcontainer" (click)="editClick()" [ngClass]="{'selected' : this.options.getEdit()}"><mat-icon class="center">edit</mat-icon></mat-list-item>
+                <mat-list-item class="listcontainer" (click)="editClick()" [ngClass]="{'selected' : options.getEdit()}"><mat-icon class="center">edit</mat-icon></mat-list-item>
             </div>
         </mat-grid-tile>
 
         <mat-grid-tile [colspan]="1">
             <div class="componentcontainer" >
-                <mat-list-item class="listcontainer" (click)="selectClick()" [ngClass]="{'selected' : this.options.getSelect()}"><mat-icon class="center">mouse</mat-icon></mat-list-item>
+                <mat-list-item class="listcontainer" (click)="selectClick()" [ngClass]="{'selected' : options.getSelect()}"><mat-icon class="center">mouse</mat-icon></mat-list-item>
             </div>
         </mat-grid-tile>
         

@@ -16,7 +16,7 @@ export class MapBuilderShellComponent implements OnInit {
 
   ngOnInit() {
     this.breakpointObserver
-      .observe(['(min-width: 699px)'])
+      .observe(['(min-width: 999px)'])
       .subscribe((state: BreakpointState) => {
         if (state.matches) {
           this.mapColSpan = 4;

@@ -17,6 +17,7 @@ import { ToolOptions } from 'src/app/models/toolOptions';
 })
 export class LayerEditorComponent implements OnInit {
   Markers : Observable<Marker[]>;
+  storedMarkers : Marker[];
   CurrentToolOptions : ToolOptions;
   private currLayer: Layer;
 
@@ -27,7 +28,7 @@ export class LayerEditorComponent implements OnInit {
     this.layerService.clearCurrentLayer();
     //Gets called everytime a new current layer is set in the layer service.
     //Updates the view based on what's in the layer.
-    this.layerService.getCurrentLayer().subscribe( x => {  if(x.id!=undefined){this.setOpenLayersVars(x);} else {this.currLayer = x; this.changeDetectorRef.detectChanges();}  } ) 
+    this.layerService.getCurrentLayer().subscribe( x => {  if(x.id!=undefined){this.setOpenLayersVars(x);} else {this.currLayer = x;}  } ) 
     //Sets CurrentToolOptions everytime its updated in external component.
     this.toolService.getCurrentOptions().subscribe( x => { this.CurrentToolOptions=x; })
   }
@@ -73,7 +74,6 @@ export class LayerEditorComponent implements OnInit {
       this.projection= new proj.Projection(this.po);
       this.currLayer = layer;
       this.getMarkers();
-      this.changeDetectorRef.detectChanges();
     }
  
   getCenter = ext =>  extent.getCenter(ext)
@@ -90,22 +90,43 @@ export class LayerEditorComponent implements OnInit {
       marker.y=coords[1];
       this.markerService.postMarker(marker).subscribe(() => this.getMarkers());
     }
-    //if Remove tool is selcted
+    //if Remove tool is selected
     else if(this.CurrentToolOptions.getRemove())
     {
-
+      let marker =this.findMarker(coords);
+      if(marker != undefined) 
+      { 
+        this.markerService.deleteMarker(marker.id).subscribe(() => this.getMarkers());
+      }
     }
-    //if Edit tool is selcted
+    //if Edit tool is selected
     else if(this.CurrentToolOptions.getEdit())
     {
-      
+      this.findMarker(coords);
     }
-    //if Select tool is selcted
+    //if Select tool is selected
     else if(this.CurrentToolOptions.getSelect())
     {
-      
+      this.findMarker(coords);
     }
     
+  }
+
+  findMarker(coords : number[]) : Marker
+  {
+    if(this.storedMarkers == undefined) return undefined;
+    
+    for(let marker of this.storedMarkers)
+    {
+      let xMin : number = coords[0] -10;
+      let xMax : number = coords[0] +10;
+
+      let yMin : number = coords[1] -10;
+      let yMax : number = coords[1] +10;
+
+      if( (marker.x >= xMin && marker.x <= xMax) && (marker.y >= yMin && marker.y <= yMax) ) { return marker}
+    }
+    return undefined;
   }
 
   needLayer() : boolean 
@@ -124,7 +145,11 @@ export class LayerEditorComponent implements OnInit {
     }
   }
 
-  getMarkers():void {this.Markers = this.markerService.getMarkers();}
+  getMarkers():void {
+    this.Markers = this.markerService.getMarkers();
+    this.storedMarkers = undefined;
+    this.Markers.subscribe(x=> this.storedMarkers = x)
+  }
 
   img: File;
   

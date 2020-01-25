@@ -1,1 +1,33 @@
-<p>toolbar works!</p>
+<div class="basic-container">
+    <mat-nav-list>
+    <mat-grid-list cols="4" rowHeight="1:1" gutterSize = "8px">
+    
+        <mat-grid-tile [colspan]="1">
+            <div class="componentcontainer" >
+                <mat-list-item class="listcontainer" (click)="addClick()" [ngClass]="{'selected' : this.options.getAdd()}"><mat-icon class="center">add</mat-icon></mat-list-item>
+            </div>
+        </mat-grid-tile>
+        
+        <mat-grid-tile [colspan]="1">
+            <div class="componentcontainer" >
+                <mat-list-item class="listcontainer" (click)="removeClick()" [ngClass]="{'selected' : this.options.getRemove()}"><mat-icon class="center">remove</mat-icon></mat-list-item>
+            </div>
+        </mat-grid-tile>
+        
+        <mat-grid-tile [colspan]="1">
+            <div class="componentcontainer" >
+                <mat-list-item class="listcontainer" (click)="editClick()" [ngClass]="{'selected' : this.options.getEdit()}"><mat-icon class="center">edit</mat-icon></mat-list-item>
+            </div>
+        </mat-grid-tile>
+
+        <mat-grid-tile [colspan]="1">
+            <div class="componentcontainer" >
+                <mat-list-item class="listcontainer" (click)="selectClick()" [ngClass]="{'selected' : this.options.getSelect()}"><mat-icon class="center">mouse</mat-icon></mat-list-item>
+            </div>
+        </mat-grid-tile>
+        
+      </mat-grid-list>
+    </mat-nav-list>
+</div>
+
+<mat-divider></mat-divider>

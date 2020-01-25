@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ToolService } from 'src/app/services/tool.service';
+import { ToolOptions } from 'src/app/models/toolOptions';
 
 @Component({
   selector: 'app-toolbar',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ToolbarComponent implements OnInit {
 
-  constructor() { }
-
+  options : ToolOptions = new ToolOptions;
+  pushOptions(): void { this.toolService.setCurrentOptions(this.options); }
+  constructor(private toolService : ToolService) { }
+  
   ngOnInit() {
+    this.pushOptions();
   }
 
+  addClick() { this.options.activateAdd(); this.pushOptions(); }
+  removeClick() { this.options.activateRemove(); this.pushOptions(); }
+  editClick() { this.options.activateEdit(); this.pushOptions(); }
+  selectClick() { this.options.activateSelect(); this.pushOptions(); }
 }

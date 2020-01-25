@@ -3,10 +3,12 @@ import { LayerService } from 'src/app/services/layer.service';
 import { ImageUploadService } from 'src/app/services/image-upload.service';
 import { FileDesc } from 'src/app/models/fileDesc';
 import { Layer } from 'src/app/models/layer';
-import { extent, proj, Feature, geom  } from 'openlayers';
+import { extent, proj, Feature, geom, MapBrowserEvent  } from 'openlayers';
 import { MarkerService } from 'src/app/services/marker.service';
 import { Observable, ReplaySubject } from 'rxjs';
 import { Marker } from 'src/app/models/marker';
+import { ToolService } from 'src/app/services/tool.service';
+import { ToolOptions } from 'src/app/models/toolOptions';
 
 @Component({
   selector: 'app-layer-editor',
@@ -15,18 +17,26 @@ import { Marker } from 'src/app/models/marker';
 })
 export class LayerEditorComponent implements OnInit {
   Markers : Observable<Marker[]>;
-  constructor(private changeDetectorRef: ChangeDetectorRef,private layerService : LayerService, private markerService : MarkerService, private imgService : ImageUploadService) { }
-
+  CurrentToolOptions : ToolOptions;
   private currLayer: Layer;
+
+  constructor(private changeDetectorRef: ChangeDetectorRef,private layerService : LayerService, private markerService : MarkerService, private imgService : ImageUploadService, private toolService : ToolService) { }
+  
   ngOnInit()
   {  
     this.layerService.clearCurrentLayer();
-    this.layerService.getCurrentLayer().subscribe( x => {  if(x.id!=undefined){this.setAolExtent(x);} else {this.currLayer = x; this.changeDetectorRef.detectChanges();}  } ) 
+    //Gets called everytime a new current layer is set in the layer service.
+    //Updates the view based on what's in the layer.
+    this.layerService.getCurrentLayer().subscribe( x => {  if(x.id!=undefined){this.setOpenLayersVars(x);} else {this.currLayer = x; this.changeDetectorRef.detectChanges();}  } ) 
+    //Sets CurrentToolOptions everytime its updated in external component.
+    this.toolService.getCurrentOptions().subscribe( x => { this.CurrentToolOptions=x; })
   }
 
   fileError : boolean = false;
 
   //variables for angular openlayers
+  zoom: number = 0;
+  center: number[] = [512, 484];
   extent: ol.Extent = [0, 0, 1920, 1080];
 
   po: olx.ProjectionOptions = {
@@ -37,8 +47,9 @@ export class LayerEditorComponent implements OnInit {
 
   projection = new proj.Projection(this.po);
 
-
-  setAolExtent(layer:Layer)
+  //Calculates the projection for openlayers based on the size of the image.
+  //Sets the currLayer property after its done.
+  setOpenLayersVars(layer:Layer)
   {
     let loaded : ReplaySubject<number[]> = new ReplaySubject<number[]>();
     loaded.subscribe(x => this.afterLoad(x[0],x[1],layer) );
@@ -51,12 +62,15 @@ export class LayerEditorComponent implements OnInit {
 
   afterLoad(width:number, height:number, layer : Layer)
     {
+      this.zoom = 2.2;
+      this.center = [width/2,height/2];
       this.extent= [0, 0, width, height];
       this.po = {
         code: 'xkcd-image',
         units: 'pixels',
         extent: [0, 0, width, height]
       }
+      this.projection= new proj.Projection(this.po);
       this.currLayer = layer;
       this.getMarkers();
       this.changeDetectorRef.detectChanges();
@@ -64,18 +78,18 @@ export class LayerEditorComponent implements OnInit {
  
   getCenter = ext =>  extent.getCenter(ext)
 
-  endDrawing(feat: Feature) {
-    const point = feat.getGeometry() as geom.Point;
-    let coords : number[] = point.getCoordinates();
-    console.log(coords);
-    let marker : Marker = new Marker();
-    marker.x=coords[0];
-    marker.y=coords[1];
-    this.markerService.postMarker(marker).subscribe(
-      x => console.log(x),
-      err => console.log(err),
-      () => console.log("biem")
-    );
+  onClick(feat: MapBrowserEvent) {
+    //store click coords in variable
+    let coords : number[] = feat.coordinate;
+
+    if(this.CurrentToolOptions.getAdd())
+    {
+      let marker : Marker = new Marker();
+      marker.x=coords[0];
+      marker.y=coords[1];
+      this.markerService.postMarker(marker).subscribe(() => this.getMarkers());
+    }
+    
   }
 
   needLayer() : boolean 

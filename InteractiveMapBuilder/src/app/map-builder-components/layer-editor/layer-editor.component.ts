@@ -102,7 +102,15 @@ export class LayerEditorComponent implements OnInit {
     //if Edit tool is selected
     else if(this.CurrentToolOptions.getEdit())
     {
-      this.findMarker(coords);
+      let formMarker: Marker = this.CurrentToolOptions.marker;
+      let canvasMarker =this.findMarker(coords);
+      if(canvasMarker != undefined) 
+      { 
+        canvasMarker.imageUrl = formMarker.imageUrl;
+        canvasMarker.layerLinkId = formMarker.layerLinkId;
+        canvasMarker.hoverText = formMarker.hoverText;
+        this.markerService.putMarker(canvasMarker).subscribe(() => this.getMarkers());
+      }
     }
     //if Select tool is selected
     else if(this.CurrentToolOptions.getSelect())

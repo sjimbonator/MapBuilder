@@ -5,6 +5,7 @@ import { Marker } from 'src/app/models/marker';
 import { Layer } from 'src/app/models/layer';
 import { Observable } from 'rxjs';
 import { LayerService } from 'src/app/services/layer.service';
+import { MapService } from 'src/app/services/map.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -14,10 +15,18 @@ import { LayerService } from 'src/app/services/layer.service';
 export class ToolbarComponent implements OnInit {
 
   layers: Observable<Layer[]>;
+
+  primaryLayerId : number;
+  updatePrimaryLayer(): void 
+  {
+    let putMap = this.mapService.currentMap;
+    putMap.primaryLayerId = this.primaryLayerId
+    this.mapService.putMap(putMap);
+  }
   
   options : ToolOptions = new ToolOptions;
   pushOptions(): void { this.toolService.setCurrentOptions(this.options); }
-  constructor(private toolService : ToolService, private layerService : LayerService) { }
+  constructor(private toolService : ToolService, private layerService : LayerService, private mapService : MapService) { }
   
   ngOnInit() {
     this.pushOptions();
@@ -27,5 +36,5 @@ export class ToolbarComponent implements OnInit {
   addClick() { this.options.activateAdd(); this.pushOptions(); }
   removeClick() { this.options.activateRemove(); this.pushOptions(); }
   editClick() { this.options.activateEdit(); this.pushOptions(); }
-  selectClick() { this.options.activateSelect(); this.pushOptions(); }
+  settingsClick() { this.options.activateSettings(); this.pushOptions(); }
 }

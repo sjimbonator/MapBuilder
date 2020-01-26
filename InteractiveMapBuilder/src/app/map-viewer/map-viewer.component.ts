@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import  * as globals from '../globals';
+import { MapService } from '../services/map.service';
+import { Observable } from 'rxjs';
+import {Map} from '../models/map'
 
 @Component({
   selector: 'app-map-viewer',
@@ -7,13 +11,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MapViewerComponent implements OnInit {
 
-  constructor() { }
+  maps: Observable<Map[]>;
+  currentMapId : number;
 
-  private mapList: string[];
+  constructor(private mapService : MapService) { }
+
   getList(): void
   {
+    this.maps = this.mapService.getMaps();
   }
-  ngOnInit() {
-  }
+  ngOnInit() {this.getList()}
+  checkAuthenticated() {return globals.isAuthenticated;}
 
 }

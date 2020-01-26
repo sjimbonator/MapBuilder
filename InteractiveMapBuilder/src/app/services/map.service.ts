@@ -17,7 +17,7 @@ export class MapService {
   clearCurrentMap() { this.currentMap = undefined;}
 
   //Functions to interact with maps
-  mapUrl: string = globals.url + "/api/Maps";
+  private mapUrl: string = globals.url + "/api/Maps";
   //Gets all maps
   getMaps(): Observable<Map[]> {return this.http.get<Map[]>(this.mapUrl, globals.httpOptions);}
   //Gets a specific map based on Id

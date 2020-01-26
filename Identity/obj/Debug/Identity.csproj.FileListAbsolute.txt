@@ -396,3 +396,5 @@ C:\Users\Sjimmie\Documents\GitHub\MapBuilder\Identity\obj\Debug\Identity.dll
 C:\Users\Sjimmie\Documents\GitHub\MapBuilder\Identity\obj\Debug\Identity.pdb
 D:\git\git\MapBuilder\Identity\obj\Debug\Identity.Migrations.Initial.resources
 D:\git\git\MapBuilder\Identity\obj\Debug\Identity.csproj.GenerateResource.cache
+C:\Users\Sjimmie\Documents\GitHub\MapBuilder\Identity\obj\Debug\Identity.Migrations.Initial.resources
+C:\Users\Sjimmie\Documents\GitHub\MapBuilder\Identity\obj\Debug\Identity.csproj.GenerateResource.cache

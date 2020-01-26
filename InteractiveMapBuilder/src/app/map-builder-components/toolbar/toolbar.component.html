@@ -4,25 +4,25 @@
     
         <mat-grid-tile [colspan]="1">
             <div class="componentcontainer" >
-                <mat-list-item class="listcontainer" (click)="addClick()" [ngClass]="{'selected' : options.getAdd()}"><mat-icon class="center">add</mat-icon></mat-list-item>
+                <mat-list-item class="listcontainer" (click)="addClick()" [ngClass]="{'selected' : options.getAdd()}" matTooltip="Add"><mat-icon class="center">add</mat-icon></mat-list-item>
             </div>
         </mat-grid-tile>
         
         <mat-grid-tile [colspan]="1">
             <div class="componentcontainer" >
-                <mat-list-item class="listcontainer" (click)="removeClick()" [ngClass]="{'selected' : options.getRemove()}"><mat-icon class="center">remove</mat-icon></mat-list-item>
+                <mat-list-item class="listcontainer" (click)="removeClick()" [ngClass]="{'selected' : options.getRemove()}" matTooltip="Remove"><mat-icon class="center">remove</mat-icon></mat-list-item>
             </div>
         </mat-grid-tile>
         
         <mat-grid-tile [colspan]="1">
             <div class="componentcontainer" >
-                <mat-list-item class="listcontainer" (click)="editClick()" [ngClass]="{'selected' : options.getEdit()}"><mat-icon class="center">edit</mat-icon></mat-list-item>
+                <mat-list-item class="listcontainer" (click)="editClick()" [ngClass]="{'selected' : options.getEdit()}" matTooltip="Edit"><mat-icon class="center">edit</mat-icon></mat-list-item>
             </div>
         </mat-grid-tile>
 
         <mat-grid-tile [colspan]="1">
             <div class="componentcontainer" >
-                <mat-list-item class="listcontainer" (click)="selectClick()" [ngClass]="{'selected' : options.getSelect()}"><mat-icon class="center">mouse</mat-icon></mat-list-item>
+                <mat-list-item class="listcontainer" (click)="settingsClick()" [ngClass]="{'selected' : options.getSettings()}" matTooltip="Map settings"><mat-icon class="center">map</mat-icon></mat-list-item>
             </div>
         </mat-grid-tile>
         
@@ -45,7 +45,6 @@
             </mat-form-field>
         </div>
 
-
         <div class="formfield">
             <mat-form-field appearance = "outline" class="listcontainer">
                 <mat-label>Marker image url</mat-label>
@@ -53,6 +52,31 @@
                 <mat-icon matSuffix>add_photo_alternate</mat-icon>
           </mat-form-field>
         </div>
+
+        <div class="formfield">
+            <mat-form-field appearance = "outline" class="listcontainer">
+                <mat-label>Marker hover text</mat-label>
+                <input matInput type ="text" [(ngModel)]="options.marker.hoverText" (ngModelChange)="pushOptions()" name ="imageUrl">
+                <mat-icon matSuffix>short_text</mat-icon>
+          </mat-form-field>
+        </div>
+        
+    </form> 
+</div>
+
+<div class="basic-container" *ngIf="options.getSettings()">
+    <form #settingsForm="ngForm">
+
+        <div class="formfield">
+            <mat-form-field appearance = "outline" class="listcontainer">
+                <mat-label>Select a layer to link to</mat-label>
+                <mat-select [(value)]="primaryLayerId" (change)="updatePrimaryLayer()">
+                  <mat-option>None</mat-option>
+                  <mat-option value={{layer.id}} *ngFor="let layer of layers | async">{{layer.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
         
     </form> 
 </div>

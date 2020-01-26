@@ -14,6 +14,8 @@ namespace Identity.Models
 
         // Foreign Key
         public string UserId { get; set; }
+
+        public int PrimaryLayerId { get; set; }
         // Navigation property
         // public User User { get; set; }
     }

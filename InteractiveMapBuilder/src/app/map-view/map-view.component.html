@@ -1,0 +1,52 @@
+<div *ngIf="loadingLayer">
+    <div class ="center">
+        <mat-spinner></mat-spinner>
+    </div>
+</div>
+
+<div *ngIf="error">
+    <div class ="center">
+        <h3>An error occurred :(</h3>
+    </div>
+</div>
+
+<div *ngIf="!loadingLayer && !error">
+    <aol-map [width]="'100%'" [height]="'100%'" (onClick) = "onClick($event)">
+        <aol-interaction-default>
+            
+            <aol-layer-image [opacity]="opacity" [extent]="extent">
+              <aol-source-imagestatic [url]=this.currentLayer.imageUrl [projection]="projection" [imageExtent]="extent">
+              </aol-source-imagestatic>
+            </aol-layer-image>
+            
+        <aol-layer-vector [extent]="extent">
+            
+            <aol-source-vector #sourceVector>    
+    
+                <div *ngFor="let marker of Markers | async">
+                    <aol-feature [id]="marker.id" >
+                        <aol-geometry-point>
+                            <aol-coordinate [x]="marker.x" [y]="marker.y" [srid] = "'EPSG:3857'"></aol-coordinate>
+                        </aol-geometry-point>
+                        <aol-style *ngIf="marker.imageUrl !=undefined && marker.imageUrl !='' ">
+                            <aol-style-icon [src]="marker.imageUrl" ></aol-style-icon>
+                    </aol-style>
+                    </aol-feature>
+    
+                    <aol-overlay>
+                        <aol-coordinate [x]="marker.x" [y]="marker.y" [srid] = "'EPSG:3857'"></aol-coordinate>
+                        <aol-content>
+                            <div class="my-overlay-class" matTooltip="{{marker.hoverText}}"> </div>
+                        </aol-content>
+                    </aol-overlay>
+                </div>
+                    
+    
+            </aol-source-vector>   
+    
+        </aol-layer-vector>
+    
+    </aol-interaction-default>
+        <aol-view [projection]="projection" [zoom]="zoom" [center]="center"></aol-view>   
+    </aol-map>
+</div>

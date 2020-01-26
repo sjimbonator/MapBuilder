@@ -113,7 +113,7 @@ export class LayerEditorComponent implements OnInit {
       }
     }
     //if Select tool is selected
-    else if(this.CurrentToolOptions.getSelect())
+    else if(this.CurrentToolOptions.getSettings())
     {
       this.findMarker(coords);
     }

@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';  
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -9,13 +10,14 @@ import { LayoutModule } from '@angular/cdk/layout';
 
 import { FormsModule} from '@angular/forms'
 
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AngularOpenlayersModule } from "ngx-openlayers";
+
+
 
 
 
@@ -56,15 +58,18 @@ import
 import { RegisterComponent } from './register/register.component';
 import { MapViewerComponent } from './map-viewer/map-viewer.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MapBuilderComponent } from './map-builder-components/maps-list/map-builder.component';
+import { MapBuilderComponent } from './map-builder-components/map-builder/map-builder.component';
 import { MapBuilderShellComponent } from './map-builder-components/map-builder-shell/map-builder-shell.component';
 import { LayersListComponent } from './map-builder-components/layers-list/layers-list.component';
 import { ToolbarComponent } from './map-builder-components/toolbar/toolbar.component';
 import { LayerEditorComponent } from './map-builder-components/layer-editor/layer-editor.component';
 import { DndDirective } from './directives/dnd.directive';
+import { MapViewerShellComponent } from './map-viewer-shell/map-viewer-shell.component';
+import { MapViewComponent } from './map-view/map-view.component';
 
 const appRoutes = [
   {path: 'map-viewer', component : MapViewerComponent},
+  {path: 'map-viewer-shell', component : MapViewerShellComponent},
   {path: 'map-builder', component : MapBuilderComponent},
   {path: 'map-builder-shell', component : MapBuilderShellComponent},
   {path: 'register', component : RegisterComponent},
@@ -72,6 +77,7 @@ const appRoutes = [
 ]
 @NgModule({
   imports: [
+    [CommonModule],
     RouterModule.forRoot(appRoutes),
     BrowserModule,
     HttpClientModule,
@@ -117,7 +123,6 @@ const appRoutes = [
   declarations: [
     AppComponent,
     NavComponent,
-    DashboardComponent,
     LoginComponent,
     RegisterComponent,
     MapViewerComponent,
@@ -126,7 +131,9 @@ const appRoutes = [
     LayersListComponent,
     ToolbarComponent,
     LayerEditorComponent,
-    DndDirective
+    DndDirective,
+    MapViewerShellComponent,
+    MapViewComponent
   ],
   
   providers: [],

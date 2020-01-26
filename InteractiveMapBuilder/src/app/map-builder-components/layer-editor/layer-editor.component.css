@@ -40,3 +40,17 @@ h3
 .fileover {
     background-color: #212121;
   }
+  
+.my-overlay-class{
+
+
+    width: 40px;
+    height: 40px;
+
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }

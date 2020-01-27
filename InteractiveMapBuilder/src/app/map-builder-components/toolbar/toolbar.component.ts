@@ -17,11 +17,12 @@ export class ToolbarComponent implements OnInit {
   layers: Observable<Layer[]>;
 
   primaryLayerId : number;
+  
   updatePrimaryLayer(): void 
   {
     let putMap = this.mapService.currentMap;
-    putMap.primaryLayerId = this.primaryLayerId
-    this.mapService.putMap(putMap);
+    putMap.primaryLayerId = this.primaryLayerId;
+    this.mapService.putMap(putMap).subscribe();
   }
   
   options : ToolOptions = new ToolOptions;
@@ -29,9 +30,12 @@ export class ToolbarComponent implements OnInit {
   constructor(private toolService : ToolService, private layerService : LayerService, private mapService : MapService) { }
   
   ngOnInit() {
+    this.primaryLayerId = this.mapService.currentMap.primaryLayerId;
     this.pushOptions();
     this.layerService.currentLayers.subscribe(x => this.layers = x);
   }
+
+  compareFn(c1: Number, c2: Number): boolean {return c1 == c2;}
 
   addClick() { this.options.activateAdd(); this.pushOptions(); }
   removeClick() { this.options.activateRemove(); this.pushOptions(); }

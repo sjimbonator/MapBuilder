@@ -23,7 +23,7 @@
             
             <aol-source-vector #sourceVector>    
     
-                <div *ngFor="let marker of Markers | async">
+                <div *ngFor="let marker of markers">
                     <aol-feature [id]="marker.id" >
                         <aol-geometry-point>
                             <aol-coordinate [x]="marker.x" [y]="marker.y" [srid] = "'EPSG:3857'"></aol-coordinate>

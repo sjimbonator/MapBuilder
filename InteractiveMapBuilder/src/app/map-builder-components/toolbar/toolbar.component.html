@@ -56,7 +56,7 @@
         <div class="formfield">
             <mat-form-field appearance = "outline" class="listcontainer">
                 <mat-label>Marker hover text</mat-label>
-                <input matInput type ="text" [(ngModel)]="options.marker.hoverText" (ngModelChange)="pushOptions()" name ="imageUrl">
+                <input matInput type ="text" [(ngModel)]="options.marker.hoverText" (ngModelChange)="pushOptions()" name ="hoverText">
                 <mat-icon matSuffix>short_text</mat-icon>
           </mat-form-field>
         </div>
@@ -69,9 +69,8 @@
 
         <div class="formfield">
             <mat-form-field appearance = "outline" class="listcontainer">
-                <mat-label>Select a layer to link to</mat-label>
-                <mat-select [(value)]="primaryLayerId" (change)="updatePrimaryLayer()">
-                  <mat-option>None</mat-option>
+                <mat-label>Select a layer to start the map on</mat-label>
+                <mat-select [(ngModel)]="primaryLayerId" (ngModelChange)="updatePrimaryLayer()" name ="layerId" [compareWith]="compareFn">
                   <mat-option value={{layer.id}} *ngFor="let layer of layers | async">{{layer.name}}</mat-option>
                 </mat-select>
             </mat-form-field>

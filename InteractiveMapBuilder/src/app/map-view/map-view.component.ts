@@ -38,10 +38,16 @@ export class MapViewComponent implements OnInit {
   ngOnInit() {
     this.loadingLayer = true;
 
-    this.layerService.getLayers().subscribe(
-      x => this.layers = x,
+    this.mapService.getMap(this.mapId).subscribe(
+      x=>this.mapService.setCurrentMap(x),
       err => this.error = true,
-      () => {this.mapService.getMap(this.mapId).subscribe(x => this.map = x, err => this.error=true, () => this.loadLayer(this.map.primaryLayerId));}
+      () => {
+        this.layerService.getLayers().subscribe(
+          x => this.layers = x,
+          err => this.error = true,
+          () => {this.mapService.getMap(this.mapId).subscribe(x => this.map = x, err => this.error=true, () => this.loadLayer(this.map.primaryLayerId));}
+        )
+      }
     )
     
   }
@@ -97,5 +103,36 @@ export class MapViewComponent implements OnInit {
     this.markerService.getMarkers().subscribe( x => this.markers = x, err => this.error = true, () => this.loadingLayer = false);
   }
   // <- functions for loading in a layer
+
+  // functions for interacting with markers ->
+  onClick(feat: MapBrowserEvent) {
+    //store click coords in variable
+    let coords : number[] = feat.coordinate;
+
+    let marker =this.findMarker(coords);
+    if(marker != undefined)  
+    { 
+        if(marker.layerLinkId != undefined){ this.loadLayer(marker.layerLinkId);}
+    }
+    
+  }
+
+  findMarker(coords : number[]) : Marker
+  {
+    if(this.markers == undefined) return undefined;
+    
+    for(let marker of this.markers)
+    {
+      let xMin : number = coords[0] -10;
+      let xMax : number = coords[0] +10;
+
+      let yMin : number = coords[1] -10;
+      let yMax : number = coords[1] +10;
+
+      if( (marker.x >= xMin && marker.x <= xMax) && (marker.y >= yMin && marker.y <= yMax) ) { return marker}
+    }
+    return undefined;
+  }
+  // <- functions for interacting with markers
 
 }

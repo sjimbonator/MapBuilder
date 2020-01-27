@@ -1,66 +1,60 @@
 <mat-card class="mat-elevation-z6">
-    <mat-card-title><p style="font-size: 2em;">MapCrafter</p></mat-card-title>
-    <mat-card-subtitle><p style="font-size: 1.5em;">Map building made easy</p></mat-card-subtitle>
     <br><br>
+    <mat-card-title><p class="mat-h1" style="font-size: 2em;">MapCrafter</p></mat-card-title><br>
+    <mat-card-subtitle><p style="font-size: 1.5em;">Map building made easy</p></mat-card-subtitle>
+    <br>
 </mat-card>
+
 <mat-card class="my-card">
-    <div class="mat-title">Overview</div>
-    <p style="padding: 10px"> Mapcraft makes it easy for users to select and edit an image of their choice
-        to share it with others by sending the url that is generated when editing an
-        image. It uses the OpenLayers API to convert the chosen image to be able to use
-        the mapping functions of the API for further editing.
-        <br><br>
-        <div class="mat-title">Quick start</div>
+    <br><p>Mapcrafter makes it easy for users to select and edit an image of their choice
+        and share it with others by simply sending the url that is generated when editing an
+        image. MapCrafter utilizes the map-editing functions from the OpenLayers API for its features.
+        <br><br><br><br><br><br>
+
+    
         <div class="row">
-            <div class="column1">
-                <button mat-raised-button color="primary" routerLink="/register">Register now</button>
-                <p>To use MapCraft, you will have to be logged in. Create an account
-                    now by clicking the link above.</p>
+            <div class="column">
+                <mat-icon class="featureIcon1" color="accent">account_circle</mat-icon>
             </div>
-            <div class="column1">
-                <button mat-raised-button color="primary" routerLink="/map-builder">Create a new map</button>
-                <p>Once logged in, you can select and upload an image to start editing!</p>
-            </div>
-            <div class="column1">
-                <button mat-raised-button color="primary" routerLink="/map-viewer">View someone else's map</button>
-                <p>Viewing someone's map is as easy as pasting the map url created
-                    by the original editor.</p>
-            </div>
-        </div>
-        <br>
-        <div class="mat-title">Features</div>
-        <div class="row">
-            <div class="column2">
-                <p>
-                    <mat-icon class="inline" color="accent">add_circle</mat-icon> Own map
-                </p>
-                <p>Start editing your own map by simply uploading an image through a
-                    drag-and-drop after clicking "create a map".</p>
-            </div>
-            <div class="column2">
-                <p>
-                    <mat-icon class="inline" color="accent">share</mat-icon> Share
-                </p>
-                <p>Show your finished map to others by simply sending them the generated
-                    url of the map.</p>
+            <div class="column">
+                <p class="featureText">Login</p>
+                <p>You can start your map building journey as soon as you log in. Dont have an account? Make one by registering.  </p>
             </div>
         </div>
 
         <div class="row">
-            <div class="column2">
-                <p>
-                    <mat-icon class="inline" color="accent">where_to_vote</mat-icon> Markers with information
-                </p>
-                <p>Be able to place markers with information onto any selected location.</p>
+            <div class="column">
+                <p class="featureText">Build</p>
+                <p>Start by uploading a background image. Be able to place markers, icons and textinformation onto your maps.  </p>
             </div>
-            <div class="column2">
-                <p>
-                    <mat-icon class="inline" color="accent">directions</mat-icon> Routing
-                </p>
-                <p>Find the fastest route between two selected locations.</p>
+            <div class="column">
+                <mat-icon class="featureIcon2" color="accent">build</mat-icon>
             </div>
-
-
+            
         </div>
 
+        <div class="row">
+            <div class="column">
+                <mat-icon class="featureIcon1" color="accent">attach_file</mat-icon>
+            </div>
+            <div class="column">
+                <p class="featureText">Share</p>
+                <p>Be able to share your maps with the generated url-link given to you during editing.  </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="column">
+                <p class="featureText">View</p>
+                <p>See other people's created maps by pasting the map-url in "Map Viewer"  </p>
+            </div>
+            <div class="column">
+                <mat-icon class="featureIcon2" color="accent">search</mat-icon>
+            </div>
+            
+        </div>
+    <div align="center">
+        <button mat-raised-button color="primary" routerLink= "/register">Get Started</button>
+    </div>
+    
 </mat-card>

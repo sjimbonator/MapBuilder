@@ -67,6 +67,7 @@ import { DndDirective } from './directives/dnd.directive';
 import { MapViewerShellComponent } from './map-viewer-shell/map-viewer-shell.component';
 import { MapViewComponent } from './map-view/map-view.component';
 import { MapLegendComponent } from './map-legend/map-legend.component';
+import { HomepageComponent } from './homepage/homepage.component';
 
 const appRoutes = [
   {path: 'map-viewer', component : MapViewerComponent},
@@ -74,7 +75,8 @@ const appRoutes = [
   {path: 'map-builder', component : MapBuilderComponent},
   {path: 'map-builder-shell', component : MapBuilderShellComponent},
   {path: 'register', component : RegisterComponent},
-  {path: 'login', component : LoginComponent}
+  {path: 'login', component : LoginComponent},
+  {path: 'home', component : HomepageComponent}
 ]
 @NgModule({
   imports: [
@@ -135,7 +137,8 @@ const appRoutes = [
     DndDirective,
     MapViewerShellComponent,
     MapViewComponent,
-    MapLegendComponent
+    MapLegendComponent,
+    HomepageComponent
   ],
   
   providers: [],

@@ -1,0 +1,50 @@
+  .column {
+    float: left;
+    
+    width: 45%;
+  }
+  
+  .mat-title{
+    padding: 10px;
+  }
+
+  .my-card{
+  padding-right: 15%;
+  padding-left: 20%;
+  }
+
+  .mat-elevation-z6{
+    background-color: #c2185b;
+    text-align: center;
+  }
+
+  .featureIcon1{
+    transform: scale(10);
+    padding-top: 4%;
+    padding-left: 5%;
+    
+  }
+
+  .featureIcon2{
+    transform: scale(10);
+    padding-top: 4%;
+    padding-left: 8%;
+    
+  }
+
+  .featureText{
+    font-size: 1.5em; 
+    padding-top: 2.6%;
+  }
+
+  .row{
+    padding-bottom: 20%;
+  }
+
+
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }

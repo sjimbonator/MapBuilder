@@ -3,58 +3,86 @@
     <mat-card-title><p class="mat-h1" style="font-size: 2em;">MapCrafter</p></mat-card-title><br>
     <mat-card-subtitle><p style="font-size: 1.5em;">Map building made easy</p></mat-card-subtitle>
     <br>
+    <div class ="center">
+        <button mat-raised-button routerLink= "/register">Get Started</button>
+    </div>
+    <br><br><br>
 </mat-card>
 
-<mat-card class="my-card">
-    <br><p>Mapcrafter makes it easy for users to select and edit an image of their choice
+<mat-grid-list cols="10" rowHeight="20%">
+    <mat-grid-tile [colspan]="3"></mat-grid-tile>
+    <mat-grid-tile [colspan]="4">
+        <div class = "textdiv">
+            Mapcrafter makes it easy for users to select and edit an image of their choice
         and share it with others by simply sending the url that is generated when editing an
         image. MapCrafter utilizes the map-editing functions from the OpenLayers API for its features.
-        <br><br><br><br><br><br>
-
-    
-        <div class="row">
-            <div class="column">
-                <mat-icon class="featureIcon1" color="accent">account_circle</mat-icon>
-            </div>
-            <div class="column">
-                <p class="featureText">Login</p>
-                <p>You can start your map building journey as soon as you log in. Dont have an account? Make one by registering.  </p>
-            </div>
         </div>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="3"></mat-grid-tile>
 
-        <div class="row">
-            <div class="column">
-                <p class="featureText">Build</p>
-                <p>Start by uploading a background image. Be able to place markers, icons and textinformation onto your maps.  </p>
-            </div>
-            <div class="column">
-                <mat-icon class="featureIcon2" color="accent">build</mat-icon>
-            </div>
-            
+    <mat-grid-tile [colspan]="2"></mat-grid-tile>
+    <mat-grid-tile [colspan]="3">
+        <div class="center2">
+            <mat-icon class="featureIcon1" color="accent">account_circle</mat-icon>
         </div>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="3">
+        <div class="center2">
+            <p class="featureText">Login</p>
+            <p>You can start your map building journey as soon as you log in. Dont have an account? Make one by registering.  </p>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="2"></mat-grid-tile>
 
-        <div class="row">
-            <div class="column">
-                <mat-icon class="featureIcon1" color="accent">attach_file</mat-icon>
-            </div>
-            <div class="column">
-                <p class="featureText">Share</p>
-                <p>Be able to share your maps with the generated url-link given to you during editing.  </p>
-            </div>
+    <mat-grid-tile [colspan]="2"></mat-grid-tile>
+    <mat-grid-tile [colspan]="3">
+        <div class="center2">
+            <p class="featureText">Build</p>
+            <p>Start by uploading a background image. Be able to place markers, icons and textinformation onto your maps.  </p>
         </div>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="3">
+        <div class="center2">
+            <mat-icon class="featureIcon2" color="accent">build</mat-icon>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="2"></mat-grid-tile>
 
-        <div class="row">
-            <div class="column">
-                <p class="featureText">View</p>
-                <p>See other people's created maps by pasting the map-url in "Map Viewer"  </p>
-            </div>
-            <div class="column">
-                <mat-icon class="featureIcon2" color="accent">search</mat-icon>
-            </div>
-            
+    <mat-grid-tile [colspan]="2"></mat-grid-tile>
+    <mat-grid-tile [colspan]="3">
+        <div class="center2">
+            <mat-icon class="featureIcon1" color="accent">attach_file</mat-icon>
         </div>
-    <div align="center">
-        <button mat-raised-button color="primary" routerLink= "/register">Get Started</button>
-    </div>
-    
-</mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="3">
+        <div class="center2">
+            <p class="featureText">Share</p>
+            <p>Be able to share your maps with the generated url-link given to you during editing.  </p>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="2"></mat-grid-tile>
+
+    <mat-grid-tile [colspan]="2"></mat-grid-tile>
+    <mat-grid-tile [colspan]="3">
+        <div class="center2">
+            <p class="featureText">View</p>
+            <p>See other people's created maps by pasting the map-url in "Map Viewer"  </p>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="3">
+        <div class="center2">
+            <mat-icon class="featureIcon2" color="accent">search</mat-icon>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="2"></mat-grid-tile>
+
+
+    <mat-grid-tile [colspan]="4"></mat-grid-tile>
+    <mat-grid-tile [colspan]="2">
+        <div class ="center">
+            <button mat-raised-button color="accent" routerLink= "/register">Get Started</button>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="4"></mat-grid-tile>
+
+</mat-grid-list>

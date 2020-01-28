@@ -91,28 +91,26 @@ export class LayerEditorComponent implements OnInit {
       marker.y=coords[1];
       this.markerService.postMarker(marker).subscribe(() => this.getMarkers());
     }
-    //if Remove tool is selected
-    else if(this.CurrentToolOptions.getRemove())
-    {
-      let marker =this.findMarker(coords);
-      if(marker != undefined) 
-      { 
-        this.markerService.deleteMarker(marker.id).subscribe(() => this.getMarkers());
-      }
-    }
-    //if Edit tool is selected
-    else if(this.CurrentToolOptions.getEdit())
-    {
-      let formMarker: Marker = this.CurrentToolOptions.marker;
-      let canvasMarker =this.findMarker(coords);
-      if(canvasMarker != undefined) 
-      { 
-        canvasMarker.markerStyleId = formMarker.markerStyleId;
-        canvasMarker.layerLinkId = formMarker.layerLinkId;
-        canvasMarker.hoverText = formMarker.hoverText;
-        this.markerService.putMarker(canvasMarker).subscribe(() => this.getMarkers());
-      }
-    } 
+  }
+  clickMarker(marker : Marker){
+        //if Remove tool is selected
+       if(this.CurrentToolOptions.getRemove())
+        {
+          this.markerService.deleteMarker(marker.id).subscribe(() => this.getMarkers());
+        }
+        //if Edit tool is selected
+        else if(this.CurrentToolOptions.getEdit())
+        {
+          let formMarker: Marker = this.CurrentToolOptions.marker;
+          let canvasMarker =marker;
+          if(canvasMarker != undefined) 
+          { 
+            canvasMarker.markerStyleId = formMarker.markerStyleId;
+            canvasMarker.layerLinkId = formMarker.layerLinkId;
+            canvasMarker.hoverText = formMarker.hoverText;
+            this.markerService.putMarker(canvasMarker).subscribe(() => this.getMarkers());
+          }
+        } 
   }
 
   findMarker(coords : number[]) : Marker

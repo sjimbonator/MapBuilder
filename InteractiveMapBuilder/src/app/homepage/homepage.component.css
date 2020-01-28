@@ -48,3 +48,26 @@
     display: table;
     clear: both;
   }
+.center2 
+{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+.center 
+{
+    text-align: center;
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    -ms-transform: translate(-50%, -0%);
+    transform: translate(-50%, -0%);
+}
+.textdiv{
+  text-align: center;
+  color: #bababa;
+  font-size: 18px;
+}

@@ -5,11 +5,10 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.css']
 })
-export class HomepageComponent implements OnInit {
+export class HomepageComponent{
+  breakpoint: string;
 
   constructor() { }
 
-  ngOnInit() {
-  }
 
 }

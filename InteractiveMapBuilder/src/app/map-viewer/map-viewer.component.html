@@ -5,8 +5,8 @@
 <div class="center">
 <mat-form-field class="form" appearance="outline">
   <mat-label>Paste your map code here</mat-label>
-  <input matInput placeholder="Placeholder">
-  <button  mat-icon-button matSuffix><mat-icon>send</mat-icon></button>
+  <input #mapCode matInput placeholder="Placeholder">
+  <button  mat-icon-button matSuffix (click)=sendClick(mapCode.value)><mat-icon>send</mat-icon></button>
 </mat-form-field>
 
 <div class="container">

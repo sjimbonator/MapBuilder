@@ -14,9 +14,10 @@ export class MarkerStyleService {
   
   checkHidden(style : MarkerStyle) : boolean
   { 
+    
     for(let checkStyle of this.hiddenStyles)
     {
-      if(style==checkStyle){return true;}
+      if(style.id==checkStyle.id){return true;}
     }
     return false;
   }

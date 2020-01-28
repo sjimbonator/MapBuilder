@@ -25,6 +25,21 @@
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
+.bottom 
+{
+    text-align: center;
+    width: 100%;
+    margin: 0;
+    position: absolute;
+    top: 95%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+.footertext{
+  margin-top: 18px;
+  color: #bababa;
+}
 
 .selected{background-color: #c2185b;}
 
@@ -49,3 +64,43 @@
   padding-left: 10px;
   padding-right: 10px;
 }
+
+.dropzone
+{
+  margin-bottom: 20px;
+    display: block;
+    position:absolute;
+    height:auto;
+    bottom:0;
+    top:0;
+    left:0;
+    right:0;
+    border: 1px dashed #6f6f6f;
+    color: #bababa;
+    border-radius: 5px;
+}
+.dropzone2
+{
+  margin-bottom: 20px;
+    display: block;
+    position:absolute;
+    height:auto;
+    bottom:0;
+    top:0;
+    left:0;
+    right:0;
+    border: 1px dashed white;
+    border-radius: 5px;
+}
+
+.fileover {
+  background-color: #212121;
+  border: 1px dashed white;
+  color: white;
+  border-radius: 5px;
+}
+
+.checkicon {
+   color: #5cc218;
+   transform: scale(4);
+  }

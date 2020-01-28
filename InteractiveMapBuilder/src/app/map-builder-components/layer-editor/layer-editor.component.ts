@@ -199,8 +199,8 @@ export class LayerEditorComponent implements OnInit {
   {
     this.handleImage($event);
   }
-  fileBrowseHandler(files) {
-    this.handleImage(files);
+  fileBrowseHandler($event) {
+    this.handleImage($event);
   }
 
 }

@@ -24,19 +24,20 @@
             <aol-source-vector #sourceVector>    
     
                 <div *ngFor="let marker of markers">
-                        <aol-feature [id]="marker.id" *ngIf="!checkhidden(marker.markerStyle)">
-                            <aol-geometry-point >
+                        <aol-feature [id]="marker.id" >
+                            <aol-geometry-point>
                                 <aol-coordinate [x]="marker.x" [y]="marker.y" [srid] = "'EPSG:3857'"></aol-coordinate>
                             </aol-geometry-point>
-                            <aol-style *ngIf="marker.markerStyle.imageUrl !=undefined && marker.markerStyle.imageUrl !='' ">
-                                <aol-style-icon [src]="marker.markerStyle.imageUrl" ></aol-style-icon>
-                        </aol-style>
+                            <aol-style>
+                                <aol-style-circle [radius]="0"></aol-style-circle>
+                            </aol-style>
                         </aol-feature>
         
                         <aol-overlay>
                             <aol-coordinate [x]="marker.x" [y]="marker.y" [srid] = "'EPSG:3857'"></aol-coordinate>
                             <aol-content>
-                                <div (click)="clickMarker(marker)" class="my-overlay-class" [ngStyle]="{'width': ''+marker.markerStyle.width+'px', 'height': ''+marker.markerStyle.height+'px'}" matTooltip="{{marker.hoverText}}"> </div>
+                                <div (click)="clickMarker(marker)" class="my-overlay-class" [ngStyle]="{'width': ''+marker.markerStyle.width+'px', 'height': ''+marker.markerStyle.height+'px'}" matTooltip="{{marker.hoverText}}">
+                                    <img [src] ="marker.markerStyle.imageUrl" *ngIf="!checkhidden(marker.markerStyle)"> </div>
                             </aol-content>
                         </aol-overlay>
                 </div>

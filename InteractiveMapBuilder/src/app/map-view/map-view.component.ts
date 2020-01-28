@@ -38,7 +38,6 @@ export class MapViewComponent implements OnInit {
   constructor(private mapService : MapService, private layerService : LayerService, private markerService : MarkerService, private markerStyleService : MarkerStyleService) { }
 
   ngOnInit() {
-    console.log( "word init");
     this.loadingLayer = true;
 
     this.layerService.getLayers().subscribe(

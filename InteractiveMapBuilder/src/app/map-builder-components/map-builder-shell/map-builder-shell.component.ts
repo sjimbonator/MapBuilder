@@ -13,6 +13,7 @@ export class MapBuilderShellComponent implements OnInit {
   rowHeight : string;
   mapColSpan : number;
   toolColSpan : number;
+  toolRowSpan : number;
 
   ngOnInit() {
     this.breakpointObserver
@@ -22,10 +23,12 @@ export class MapBuilderShellComponent implements OnInit {
           this.mapColSpan = 4;
           this.toolColSpan = 1;
           this.rowHeight = " 2 : 5";
+          this.toolRowSpan = 1;
         } else {
           this.mapColSpan = 6;
           this.toolColSpan = 3;
           this.rowHeight = " 2 : 8";
+          this.toolRowSpan = 2;
         }
       });
   }

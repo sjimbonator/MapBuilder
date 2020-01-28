@@ -75,33 +75,6 @@
           </div>
         </form>
 
-        <div class="container">
-            <div class="line"><mat-divider></mat-divider></div>
-            <div class="text mat-typography"><b>New style</b></div>
-            <div class="line"><mat-divider></mat-divider></div>
-          </div>
-        <!--new style form-->
-        <form #styleForm="ngForm">
-    
-          <div class="formfield">
-            <mat-form-field appearance = "outline" class="listcontainer">
-                <mat-label>Style name</mat-label>
-                <input matInput type ="text" [(ngModel)]="newStyleName" name ="newStyleName">
-                <mat-icon matSuffix>short_text</mat-icon>
-          </mat-form-field>
-          </div>
-    
-          <div class="formfield">
-            <mat-form-field appearance = "outline" class="listcontainer">
-                <mat-label>Style image url</mat-label>
-                <input matInput type ="text" [(ngModel)]="newStyleImageUrl" name ="newStyleImage">
-                <mat-icon matSuffix>add_photo_alternate</mat-icon>
-          </mat-form-field>
-        </div>
-    
-        <button mat-raised-button color="primary" (click)="newStyleClick()" class="container">Add Style</button>
-        </form> 
-
 </div>
 
 <div class="basic-container" *ngIf="options.getSettings()">
@@ -124,4 +97,53 @@
 
         
     </form> 
+    
+    <div class="container">
+      <div class="line"><mat-divider></mat-divider></div>
+      <div class="text mat-typography"><b>New style</b></div>
+      <div class="line"><mat-divider></mat-divider></div>
+    </div>
+  <!--new style form-->
+  <form #styleForm="ngForm">
+
+    <div class="formfield">
+      <mat-form-field appearance = "outline" class="listcontainer">
+          <mat-label>Style name</mat-label>
+          <input matInput type ="text" [(ngModel)]="newStyleName" name ="newStyleName">
+          <mat-icon matSuffix>short_text</mat-icon>
+    </mat-form-field>
+    </div>
+
+    <mat-grid-list cols = "1" rowHeight="1.5:1">
+      <mat-grid-tile>
+        <div class = "listcontainer">
+          <div class = "dropzone" appDnd (fileDropped)="onFileDropped($event)" *ngIf="(newStyleImageUrl == undefined || newStyleImageUrl == '') && !isUploading">
+            <input type="file" #fileDropRef id="fileDropRef" multiple (change)="fileBrowseHandler($event.target.files)" style="display:none">
+            <div class ="center">
+                <h3>Drag and drop your marker image here</h3>
+            </div>
+          </div> 
+          <div class = "dropzone2" *ngIf="isUploading"><div class ="center" ><mat-spinner ></mat-spinner></div></div>
+          <div class = "dropzone2" *ngIf="!isUploading && !(newStyleImageUrl == undefined || newStyleImageUrl == '')"><div class ="center" > <mat-icon class="checkicon">check</mat-icon></div>
+        </div>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+      
+
+
+  <button mat-raised-button color="primary" (click)="newStyleClick()" class="container" 
+  [disabled]="newStyleImageUrl == undefined || newStyleImageUrl == '' || newStyleName == undefined || newStyleName == '' ">Add Style</button>
+  </form> 
+</div>
+
+
+
+
+<div class="bottom">
+  <mat-divider></mat-divider>
+  <div class ="footertext">
+    Your map code is: <b>{{mapId}}2a3fy</b> 
+  </div>
+    
 </div>

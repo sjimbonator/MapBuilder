@@ -1,0 +1,16 @@
+<mat-list>
+    <mat-list-item>
+        <h2>Legend</h2>
+    </mat-list-item>
+</mat-list>
+    
+    <mat-nav-list>
+        <mat-divider></mat-divider>
+        <mat-list-item *ngFor="let style of styles | async">
+            <mat-divider></mat-divider>
+            
+            <a matLine (click)="styleClick(style)" [ngClass]="{'hidden': styleIsHidden(style)}">{{style.name}}</a>
+            <img [src]="style.imageUrl">
+        </mat-list-item>
+    </mat-nav-list>
+    

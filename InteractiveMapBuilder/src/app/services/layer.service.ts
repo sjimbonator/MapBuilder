@@ -21,6 +21,7 @@ export class LayerService{
   {
      this.currentLayer = new BehaviorSubject<Layer>(new Layer());
      this.currentLayers = new BehaviorSubject<Observable<Layer[]>>(this.getLayers());
+     this.mapService.currentMapSubject.subscribe(x => this.currentLayers.next(this.getLayers()))
      this.getCurrentLayer().subscribe( x => this.currLayer = x) 
   }
 

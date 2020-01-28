@@ -11,7 +11,7 @@
 </div>
 
 <div *ngIf="!loadingLayer && !error">
-    <aol-map [width]="'100%'" [height]="'100%'" (onClick) = "onClick($event)">
+    <aol-map [width]="'100%'" [height]="'100%'">
         <aol-interaction-default>
             
             <aol-layer-image [opacity]="opacity" [extent]="extent">
@@ -24,23 +24,22 @@
             <aol-source-vector #sourceVector>    
     
                 <div *ngFor="let marker of markers">
-                    <aol-feature [id]="marker.id" >
-                        <aol-geometry-point>
+                        <aol-feature [id]="marker.id" *ngIf="!checkhidden(marker.markerStyle)">
+                            <aol-geometry-point >
+                                <aol-coordinate [x]="marker.x" [y]="marker.y" [srid] = "'EPSG:3857'"></aol-coordinate>
+                            </aol-geometry-point>
+                            <aol-style *ngIf="marker.markerStyle.imageUrl !=undefined && marker.markerStyle.imageUrl !='' ">
+                                <aol-style-icon [src]="marker.markerStyle.imageUrl" ></aol-style-icon>
+                        </aol-style>
+                        </aol-feature>
+        
+                        <aol-overlay>
                             <aol-coordinate [x]="marker.x" [y]="marker.y" [srid] = "'EPSG:3857'"></aol-coordinate>
-                        </aol-geometry-point>
-                        <aol-style *ngIf="marker.imageUrl !=undefined && marker.imageUrl !='' ">
-                            <aol-style-icon [src]="marker.imageUrl" ></aol-style-icon>
-                    </aol-style>
-                    </aol-feature>
-    
-                    <aol-overlay>
-                        <aol-coordinate [x]="marker.x" [y]="marker.y" [srid] = "'EPSG:3857'"></aol-coordinate>
-                        <aol-content>
-                            <div class="my-overlay-class" matTooltip="{{marker.hoverText}}"> </div>
-                        </aol-content>
-                    </aol-overlay>
+                            <aol-content>
+                                <div (click)="clickMarker(marker)" class="my-overlay-class" [ngStyle]="{'width': ''+marker.markerStyle.width+'px', 'height': ''+marker.markerStyle.height+'px'}" matTooltip="{{marker.hoverText}}"> </div>
+                            </aol-content>
+                        </aol-overlay>
                 </div>
-                    
     
             </aol-source-vector>   
     

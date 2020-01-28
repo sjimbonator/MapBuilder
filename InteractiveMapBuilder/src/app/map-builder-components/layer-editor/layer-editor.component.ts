@@ -28,7 +28,7 @@ export class LayerEditorComponent implements OnInit {
     this.layerService.clearCurrentLayer();
     //Gets called everytime a new current layer is set in the layer service.
     //Updates the view based on what's in the layer.
-    this.layerService.getCurrentLayer().subscribe( x => {  if(x.id!=undefined){this.setOpenLayersVars(x);} else {this.currLayer = x;}  } ) 
+    this.layerService.getCurrentLayer().subscribe( x => {  console.log("test");if(x.id!=undefined && x.imageUrl!=undefined){this.setOpenLayersVars(x);} else {this.currLayer = x;}  } ) 
     //Sets CurrentToolOptions everytime its updated in external component.
     this.toolService.getCurrentOptions().subscribe( x => { this.CurrentToolOptions=x; })
   }
@@ -81,6 +81,7 @@ export class LayerEditorComponent implements OnInit {
   onClick(feat: MapBrowserEvent) {
     //store click coords in variable
     let coords : number[] = feat.coordinate;
+    console.log(coords);
 
     //if Add tool is selected
     if(this.CurrentToolOptions.getAdd())
@@ -106,18 +107,12 @@ export class LayerEditorComponent implements OnInit {
       let canvasMarker =this.findMarker(coords);
       if(canvasMarker != undefined) 
       { 
-        canvasMarker.imageUrl = formMarker.imageUrl;
+        canvasMarker.markerStyleId = formMarker.markerStyleId;
         canvasMarker.layerLinkId = formMarker.layerLinkId;
         canvasMarker.hoverText = formMarker.hoverText;
         this.markerService.putMarker(canvasMarker).subscribe(() => this.getMarkers());
       }
-    }
-    //if Select tool is selected
-    else if(this.CurrentToolOptions.getSettings())
-    {
-      this.findMarker(coords);
-    }
-    
+    } 
   }
 
   findMarker(coords : number[]) : Marker

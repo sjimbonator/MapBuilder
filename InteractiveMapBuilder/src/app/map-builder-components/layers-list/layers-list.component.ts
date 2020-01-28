@@ -32,7 +32,7 @@ export class LayersListComponent implements OnInit {
 
   getLayers() : void {this.layers = this.layerService.getLayers();}
 
-  layerClick(layer:Layer) {this.layerService.setCurrentLayer(layer);}
+  layerClick(layer:Layer) {console.log(layer); this.layerService.setCurrentLayer(layer);}
 
   removeLayer(layerId:number) {this.layerService.deleteLayer(layerId).subscribe(() => this.layers = this.layerService.getLayers());}
   

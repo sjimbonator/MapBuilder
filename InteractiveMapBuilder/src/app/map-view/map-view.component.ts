@@ -7,6 +7,8 @@ import { Layer } from '../models/layer';
 import { Marker } from '../models/marker';
 import { ReplaySubject } from 'rxjs';
 import { extent, proj, Feature, geom, MapBrowserEvent  } from 'openlayers';
+import { MarkerStyle } from '../models/markerStyle';
+import { MarkerStyleService } from '../services/marker-style.service';
 
 @Component({
   selector: 'app-map-view',
@@ -23,7 +25,7 @@ export class MapViewComponent implements OnInit {
 
   currentLayer : Layer;
 
-  loadingLayer : boolean;
+  loadingLayer : boolean = true;
   error : boolean = false;
 
   //variables for angular openlayers
@@ -33,23 +35,17 @@ export class MapViewComponent implements OnInit {
   po: olx.ProjectionOptions;
   projection : proj.Projection;
 
-  constructor(private mapService : MapService, private layerService : LayerService, private markerService : MarkerService) { }
+  constructor(private mapService : MapService, private layerService : LayerService, private markerService : MarkerService, private markerStyleService : MarkerStyleService) { }
 
   ngOnInit() {
+    console.log( "word init");
     this.loadingLayer = true;
 
-    this.mapService.getMap(this.mapId).subscribe(
-      x=>this.mapService.setCurrentMap(x),
+    this.layerService.getLayers().subscribe(
+      x => this.layers = x,
       err => this.error = true,
-      () => {
-        this.layerService.getLayers().subscribe(
-          x => this.layers = x,
-          err => this.error = true,
-          () => {this.mapService.getMap(this.mapId).subscribe(x => this.map = x, err => this.error=true, () => this.loadLayer(this.map.primaryLayerId));}
-        )
-      }
+      () => {this.mapService.getMap(this.mapId).subscribe(x => this.map = x, err => this.error=true, () => this.loadLayer(this.map.primaryLayerId));}
     )
-    
   }
 
   //functions for loading in a layer ->
@@ -104,35 +100,12 @@ export class MapViewComponent implements OnInit {
   }
   // <- functions for loading in a layer
 
-  // functions for interacting with markers ->
-  onClick(feat: MapBrowserEvent) {
-    //store click coords in variable
-    let coords : number[] = feat.coordinate;
-
-    let marker =this.findMarker(coords);
-    if(marker != undefined)  
-    { 
-        if(marker.layerLinkId != undefined){ this.loadLayer(marker.layerLinkId);}
-    }
-    
+  clickMarker(marker : Marker){
+    if(marker.layerLinkId != undefined){  this.loadLayer(marker.layerLinkId);}
   }
 
-  findMarker(coords : number[]) : Marker
+  checkhidden(style : MarkerStyle) : boolean
   {
-    if(this.markers == undefined) return undefined;
-    
-    for(let marker of this.markers)
-    {
-      let xMin : number = coords[0] -10;
-      let xMax : number = coords[0] +10;
-
-      let yMin : number = coords[1] -10;
-      let yMax : number = coords[1] +10;
-
-      if( (marker.x >= xMin && marker.x <= xMax) && (marker.y >= yMin && marker.y <= yMax) ) { return marker}
-    }
-    return undefined;
+     return this.markerStyleService.checkHidden(style); 
   }
-  // <- functions for interacting with markers
-
 }

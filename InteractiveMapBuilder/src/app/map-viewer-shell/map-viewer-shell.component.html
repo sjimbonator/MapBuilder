@@ -2,8 +2,18 @@
     <button mat-button routerLink= "/map-viewer"><mat-icon>arrow_back</mat-icon>Back</button>
 </mat-toolbar>
 
-<div class="basic-container">
-    <div class="componentcontainer">
-        <app-map-view [mapId] = "id"></app-map-view>
-    </div>
+<div class="basic-container" *ngIf="!loading">
+    <mat-grid-list cols="5" rowHeight="2:4" gutterSize = "16px">
+        <mat-grid-tile [colspan]="1">
+            <div class="componentcontainer">
+                <app-map-legend></app-map-legend>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="4">
+            <div class="componentcontainer">
+                <app-map-view [mapId] = "id"></app-map-view>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+    
 </div>

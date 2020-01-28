@@ -2,27 +2,27 @@
     <mat-nav-list>
     <mat-grid-list cols="4" rowHeight="1:1" gutterSize = "8px">
     
-        <mat-grid-tile [colspan]="1">
+        <mat-grid-tile [colspan]="1" [ngClass]="{'selected' : options.getAdd()}">
             <div class="componentcontainer" >
-                <mat-list-item class="listcontainer" (click)="addClick()" [ngClass]="{'selected' : options.getAdd()}" matTooltip="Add"><mat-icon class="center">add</mat-icon></mat-list-item>
+                <mat-list-item class="listcontainer" (click)="addClick()" matTooltip="Add Marker"><mat-icon class="center">add</mat-icon></mat-list-item>
             </div>
         </mat-grid-tile>
         
-        <mat-grid-tile [colspan]="1">
+        <mat-grid-tile [colspan]="1" [ngClass]="{'selected' : options.getRemove()}">
             <div class="componentcontainer" >
-                <mat-list-item class="listcontainer" (click)="removeClick()" [ngClass]="{'selected' : options.getRemove()}" matTooltip="Remove"><mat-icon class="center">remove</mat-icon></mat-list-item>
+                <mat-list-item class="listcontainer" (click)="removeClick()" matTooltip="Remove Marker"><mat-icon class="center">remove</mat-icon></mat-list-item>
             </div>
         </mat-grid-tile>
         
-        <mat-grid-tile [colspan]="1">
+        <mat-grid-tile [colspan]="1" [ngClass]="{'selected' : options.getEdit()}">
             <div class="componentcontainer" >
-                <mat-list-item class="listcontainer" (click)="editClick()" [ngClass]="{'selected' : options.getEdit()}" matTooltip="Edit"><mat-icon class="center">edit</mat-icon></mat-list-item>
+                <mat-list-item class="listcontainer" (click)="editClick()" matTooltip="Edit Marker"><mat-icon class="center">edit</mat-icon></mat-list-item>
             </div>
         </mat-grid-tile>
 
-        <mat-grid-tile [colspan]="1">
+        <mat-grid-tile [colspan]="1" [ngClass]="{'selected' : options.getSettings()}">
             <div class="componentcontainer" >
-                <mat-list-item class="listcontainer" (click)="settingsClick()" [ngClass]="{'selected' : options.getSettings()}" matTooltip="Map settings"><mat-icon class="center">map</mat-icon></mat-list-item>
+                <mat-list-item class="listcontainer" (click)="settingsClick()" matTooltip="Map settings"><mat-icon class="center">map</mat-icon></mat-list-item>
             </div>
         </mat-grid-tile>
         
@@ -33,24 +33,22 @@
 <mat-divider></mat-divider>
 
 <div class="basic-container" *ngIf="options.getAdd() || options.getEdit()">
+    <!--features & select style form-->
     <form #markerForm="ngForm">
+
+        <div class="container">
+            <div class="line"><mat-divider></mat-divider></div>
+            <div class="text mat-typography"><b>Features (optional)</b></div>
+            <div class="line"><mat-divider></mat-divider></div>
+          </div>
 
         <div class="formfield">
             <mat-form-field appearance = "outline" class="listcontainer">
                 <mat-label>Select a layer to link to</mat-label>
                 <mat-select [(value)]="options.marker.layerLinkId">
-                  <mat-option>None</mat-option>
                   <mat-option value={{layer.id}} *ngFor="let layer of layers | async">{{layer.name}}</mat-option>
                 </mat-select>
             </mat-form-field>
-        </div>
-
-        <div class="formfield">
-            <mat-form-field appearance = "outline" class="listcontainer">
-                <mat-label>Marker image url</mat-label>
-                <input matInput type ="text" [(ngModel)]="options.marker.imageUrl" (ngModelChange)="pushOptions()" name ="imageUrl">
-                <mat-icon matSuffix>add_photo_alternate</mat-icon>
-          </mat-form-field>
         </div>
 
         <div class="formfield">
@@ -60,12 +58,60 @@
                 <mat-icon matSuffix>short_text</mat-icon>
           </mat-form-field>
         </div>
-        
-    </form> 
+
+        <div class="container">
+            <div class="line"><mat-divider></mat-divider></div>
+            <div class="text mat-typography"><b>Select style</b></div>
+            <div class="line"><mat-divider></mat-divider></div>
+          </div>
+
+        <div class="formfield">
+            <mat-form-field appearance = "outline" class="listcontainer">
+                <mat-label>Select a style to apply</mat-label>
+                <mat-select [(value)]="options.marker.markerStyleId">
+                  <mat-option value={{style.id}} *ngFor="let style of styles | async">{{style.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+          </div>
+        </form>
+
+        <div class="container">
+            <div class="line"><mat-divider></mat-divider></div>
+            <div class="text mat-typography"><b>New style</b></div>
+            <div class="line"><mat-divider></mat-divider></div>
+          </div>
+        <!--new style form-->
+        <form #styleForm="ngForm">
+    
+          <div class="formfield">
+            <mat-form-field appearance = "outline" class="listcontainer">
+                <mat-label>Style name</mat-label>
+                <input matInput type ="text" [(ngModel)]="newStyleName" name ="newStyleName">
+                <mat-icon matSuffix>short_text</mat-icon>
+          </mat-form-field>
+          </div>
+    
+          <div class="formfield">
+            <mat-form-field appearance = "outline" class="listcontainer">
+                <mat-label>Style image url</mat-label>
+                <input matInput type ="text" [(ngModel)]="newStyleImageUrl" name ="newStyleImage">
+                <mat-icon matSuffix>add_photo_alternate</mat-icon>
+          </mat-form-field>
+        </div>
+    
+        <button mat-raised-button color="primary" (click)="newStyleClick()" class="container">Add Style</button>
+        </form> 
+
 </div>
 
 <div class="basic-container" *ngIf="options.getSettings()">
     <form #settingsForm="ngForm">
+
+        <div class="container">
+            <div class="line"><mat-divider></mat-divider></div>
+            <div class="text mat-typography"><b>Primary layer</b></div>
+            <div class="line"><mat-divider></mat-divider></div>
+          </div>
 
         <div class="formfield">
             <mat-form-field appearance = "outline" class="listcontainer">

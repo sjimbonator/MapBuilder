@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using Identity.FileUpload;
+using System.Drawing;
 
 namespace Identity.Controllers
 {
@@ -28,7 +29,7 @@ namespace Identity.Controllers
             // 
             var multiFormDataStreamProvider = new MultiFileUploadProvider(fileuploadPath);
 
-            // Read the MIME multipart asynchronously 
+            // Read the MIME multipart asynchronously
             await Request.Content.ReadAsMultipartAsync(multiFormDataStreamProvider);
 
             string uploadingFileName = multiFormDataStreamProvider
@@ -38,12 +39,18 @@ namespace Identity.Controllers
             string filename = Path.GetFileName(uploadingFileName);
             baseUrl += "/UploadedFiles/" + filename;
 
+            Image img = Image.FromStream(File.OpenRead(fileuploadPath + "/" + filename), false, false);
+
             // Create response, assigning appropriate values to properties 
             return new FileUploadDetails
             {
                 FilePath = baseUrl,
 
-                FileName = filename
+                FileName = filename,
+
+                Width = img.Width,
+
+                Height = img.Height
             };
         }
     }

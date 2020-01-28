@@ -66,6 +66,7 @@ import { LayerEditorComponent } from './map-builder-components/layer-editor/laye
 import { DndDirective } from './directives/dnd.directive';
 import { MapViewerShellComponent } from './map-viewer-shell/map-viewer-shell.component';
 import { MapViewComponent } from './map-view/map-view.component';
+import { MapLegendComponent } from './map-legend/map-legend.component';
 
 const appRoutes = [
   {path: 'map-viewer', component : MapViewerComponent},
@@ -133,7 +134,8 @@ const appRoutes = [
     LayerEditorComponent,
     DndDirective,
     MapViewerShellComponent,
-    MapViewComponent
+    MapViewComponent,
+    MapLegendComponent
   ],
   
   providers: [],

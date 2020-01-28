@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, ReplaySubject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Map } from '../models/map';
 import  * as globals from '../globals';
@@ -9,11 +9,15 @@ import  * as globals from '../globals';
 })
 export class MapService {
 
-  constructor(private http: HttpClient) { }
+  currentMapSubject : ReplaySubject<Map>;
+  constructor(private http: HttpClient) 
+  {
+    this.currentMapSubject = new ReplaySubject<Map>();
+  }
 
   //Functions to store a map in memory
   currentMap: Map;
-  setCurrentMap(map : Map) {this.currentMap = map;}
+  setCurrentMap(map : Map) {this.currentMap = map; this.currentMapSubject.next(map);}
   clearCurrentMap() { this.currentMap = undefined;}
 
   //Functions to interact with maps

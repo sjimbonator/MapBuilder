@@ -24,5 +24,7 @@ namespace Identity.Data
         public System.Data.Entity.DbSet<Identity.Models.Layer> Layers { get; set; }
 
         public System.Data.Entity.DbSet<Identity.Models.Marker> Markers { get; set; }
+
+        public System.Data.Entity.DbSet<Identity.Models.MarkerStyle> MarkerStyles { get; set; }
     }
 }

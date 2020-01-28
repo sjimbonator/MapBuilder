@@ -22,7 +22,7 @@ namespace Identity.Controllers
         // GET: api/Markers/5
         public IQueryable<Marker> GetMarkers(int id)
         {
-            return db.Markers.Where(layer => layer.LayerId == id);
+            return db.Markers.Where(marker => marker.LayerId == id).Include(b => b.MarkerStyle);
         }
         [Authorize]
         // PUT: api/Markers/5

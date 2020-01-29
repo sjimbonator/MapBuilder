@@ -100,7 +100,7 @@ export class MapViewComponent implements OnInit {
   // <- functions for loading in a layer
 
   clickMarker(marker : Marker){
-    if(marker.layerLinkId != undefined){  this.loadLayer(marker.layerLinkId);}
+    if(marker.layerLinkId != undefined && marker.layerLinkId != 0){ this.loadLayer(marker.layerLinkId);}
   }
 
   checkhidden(style : MarkerStyle) : boolean

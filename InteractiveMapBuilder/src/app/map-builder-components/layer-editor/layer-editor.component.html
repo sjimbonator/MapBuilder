@@ -43,7 +43,7 @@
                 <aol-overlay>
                     <aol-coordinate [x]="marker.x" [y]="marker.y" [srid] = "'EPSG:3857'"></aol-coordinate>
                     <aol-content>
-                        <div class="my-overlay-class" (click)="clickMarker(marker)" [ngStyle]="{'width': ''+marker.markerStyle.width+'px', 'height': ''+marker.markerStyle.height+'px'}" matTooltip="{{marker.hoverText}}"> 
+                        <div (click)="clickMarker(marker)" [ngStyle]="{'width': ''+marker.markerStyle.width+'px', 'height': ''+marker.markerStyle.height+'px'}" matTooltip="{{marker.hoverText}}"> 
                             <img [src] ="marker.markerStyle.imageUrl">
                         </div>
                     </aol-content>

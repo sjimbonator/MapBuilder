@@ -46,6 +46,7 @@
             <mat-form-field appearance = "outline" class="listcontainer">
                 <mat-label>Select a layer to link to</mat-label>
                 <mat-select [(value)]="options.marker.layerLinkId">
+                  <mat-option>None</mat-option>
                   <mat-option value={{layer.id}} *ngFor="let layer of layers | async">{{layer.name}}</mat-option>
                 </mat-select>
             </mat-form-field>

@@ -1,1 +1,9 @@
 .hidden {text-decoration: line-through;}
+.legendbutton {
+    margin-top: 20px;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    -ms-transform: translate(-50%);
+    transform: translate(-50%);
+}

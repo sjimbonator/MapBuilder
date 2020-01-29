@@ -101,11 +101,13 @@ export class LayerEditorComponent implements OnInit {
         //if Edit tool is selected
         else if(this.CurrentToolOptions.getEdit())
         {
+          console.log("test");
           let formMarker: Marker = this.CurrentToolOptions.marker;
           let canvasMarker =marker;
           if(canvasMarker != undefined) 
           { 
             canvasMarker.markerStyleId = formMarker.markerStyleId;
+            canvasMarker.markerStyle = formMarker.markerStyle;
             canvasMarker.layerLinkId = formMarker.layerLinkId;
             canvasMarker.hoverText = formMarker.hoverText;
             this.markerService.putMarker(canvasMarker).subscribe(() => this.getMarkers());

@@ -1,5 +1,5 @@
 # MapBuilder
-# Instructions to run webapp:
+ Instructions to run webapp:
 1. Open the "Identity" folder/project in visual studio.
 2. Run the project with IIS Express and copy the url.
 3. Then open "InteractiveMapBuilder" folder with visual studio code.

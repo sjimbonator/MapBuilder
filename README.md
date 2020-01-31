@@ -1,8 +1,4 @@
 # MapBuilder
-![Screenshot of the mapviewer](https://github.com/sjimbonator/MapBuilder/blob/master/screenshots/Screenshot1.PNG)
-![Screenshot of the mapviewer](https://github.com/sjimbonator/MapBuilder/blob/master/screenshots/screenshot2.PNG)
-An interactive map builder made with angular and asp.net. Specifically designed for game maps.
-
 # Instructions to run webapp:
 1. Open the "Identity" folder/project in visual studio.
 2. Run the project with IIS Express and copy the url.
@@ -14,3 +10,9 @@ An interactive map builder made with angular and asp.net. Specifically designed 
 8. And change the line of code on line 29 from: referenceProjectionCode = referenceProjection ? referenceProjection.getCode() : 'EPSG:3857';
 9. to referenceProjectionCode = referenceProjection ? 'EPSG:3857' : 'EPSG:3857';
 10. And finally run ng serve --open in the terminal to run the app.
+
+# Description
+![Screenshot of the mapviewer](https://github.com/sjimbonator/MapBuilder/blob/master/screenshots/Screenshot1.PNG)
+![Screenshot of the mapviewer](https://github.com/sjimbonator/MapBuilder/blob/master/screenshots/screenshot2.PNG)
+An interactive map builder made with angular and asp.net. Specifically designed for game maps.
+

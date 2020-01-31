@@ -1,6 +1,9 @@
 # MapBuilder
+![Screenshot of the mapviewer](https://github.com/sjimbonator/MapBuilder/blob/master/screenshots/Screenshot1.PNG)
+![Screenshot of the mapviewer](https://github.com/sjimbonator/MapBuilder/blob/master/screenshots/Screenshot2.PNG)
+An interactive map builder made with angular and asp.net. Specifically designed for game maps.
 
-Instructions to run webapp:
+# Instructions to run webapp:
 1. Open the "Identity" folder/project in visual studio.
 2. Run the project with IIS Express and copy the url.
 3. Then open "InteractiveMapBuilder" folder with visual studio code.

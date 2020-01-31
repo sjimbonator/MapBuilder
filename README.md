@@ -1,6 +1,6 @@
 # MapBuilder
 ![Screenshot of the mapviewer](https://github.com/sjimbonator/MapBuilder/blob/master/screenshots/Screenshot1.PNG)
-![Screenshot of the mapviewer](https://github.com/sjimbonator/MapBuilder/blob/master/screenshots/Screenshot2.PNG)
+![Screenshot of the mapviewer](https://github.com/sjimbonator/MapBuilder/blob/master/screenshots/screenshot2.PNG)
 An interactive map builder made with angular and asp.net. Specifically designed for game maps.
 
 # Instructions to run webapp:
